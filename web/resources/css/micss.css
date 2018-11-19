@@ -1,0 +1,98 @@
+
+
+.diente2>div.col-xs-2, div.col-xs-1 {
+    padding-right: 6px;
+    padding-left: 6px;
+    text-align: center;
+}
+
+
+/* Odontograma Cuadrantes*/
+#cuadrante1{
+    padding-right: 10px;
+    padding-left: 0px;
+}
+
+#cuadrante2{
+    padding-right: 0px;
+    padding-left: 10px;
+}
+
+.conjuntoDientes{
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+#cuadrante1> div.col-xs-12> div.col-xs-6 > div.col-xs-12 > div.col-xs-3 {
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
+}
+
+#cuadrante2> div.col-xs-12> div.col-xs-6 > div.col-xs-12 > div.col-xs-3 {
+    padding-right: 5px;
+    padding-left: 5px;
+    text-align: center;
+}
+
+.color-chart90 {
+     width:90px;
+     height:90px;
+     border-right: 30px solid #d9534f;
+     border-top: 30px solid #428bca;
+     border-left: 30px solid #f0ad4e;
+     border-bottom: 30px solid #5cb85c;
+     -moz-border-radius: 0%;
+     -webkit-border-radius: 00%;
+     border-radius: 00%;
+     opacity: 0.9;
+}
+
+.color-chart91 {
+     width:90px;
+     height:90px;
+     border-right: 30px solid white;
+     border-top: 30px solid white;
+     border-left: 30px solid white;
+     border-bottom: 30px solid white;
+    background-color: blue;
+     -moz-border-radius: 0%;
+     -webkit-border-radius: 00%;
+     border-radius: 00%;
+     
+    
+    margin: 5px;
+    
+}
+
+.imagen{
+    background: url("/img/oie_transparent.png") no-repeat center center
+}
+
+.color-chart {
+     width:30px;
+     height:30px;
+     border-right: 10px solid #d9534f;
+     border-top: 10px solid #428bca;
+     border-left: 10px solid #f0ad4e;
+     border-bottom: 10px solid #5cb85c;
+     -moz-border-radius: 0%;
+     -webkit-border-radius: 00%;
+     border-radius: 00%;
+}
+
+.padre {
+  /*IMPORTANTE*/
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circulo {
+     width: 5px;
+     height: 5px;
+     -moz-border-radius: 50%;
+     -webkit-border-radius: 50%;
+     border-radius: 0%;
+     background: black;
+}

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a55c2df1-6621-4688-bc83-d4de31d1270c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="clinicaId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT i.insumo_nombre, i.insumo_descripcion, e.existencia_cantidad, u.unidadmedida_nombre, c.clinica_id, c.clinica_nombre
+FROM insumos i, existencias e, unidades_medidas u, clinicas c
+WHERE i.insumo_id = e.insumo_id
+AND e.clinica_id=c.clinica_id
+AND i.unidadmedida_id=u.unidadmedida_id
+AND i.insumo_estado = TRUE
+AND e.existencia_cantidad <= i.insumo_minimo
+AND c.clinica_id = $P{clinicaId}
+GROUP BY i.insumo_nombre, i.insumo_descripcion, e.existencia_cantidad, u.unidadmedida_nombre, c.clinica_id;]]>
+	</queryString>
+	<field name="insumo_nombre" class="java.lang.String"/>
+	<field name="insumo_descripcion" class="java.lang.String"/>
+	<field name="existencia_cantidad" class="java.lang.Double"/>
+	<field name="unidadmedida_nombre" class="java.lang.String"/>
+	<field name="clinica_id" class="java.lang.Integer"/>
+	<field name="clinica_nombre" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="74" splitType="Stretch">
+			<textField>
+				<reportElement x="477" y="37" width="80" height="20" forecolor="#464646" uuid="db410566-5fe7-4910-a564-7b30e725b7c1"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="557" y="37" width="14" height="20" forecolor="#464646" uuid="ee792ce5-8660-49d6-b778-96de73f06e99"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="169" y="1" width="237" height="24" forecolor="#464646" uuid="a2ccd8e1-044e-44bd-a428-e896d2cc0b27"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLÍNICA DENTAL SMILING]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="159" y="25" width="275" height="20" forecolor="#464646" uuid="ca3bfa96-737e-4051-84c7-7a0312c51f92"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE INSUMOS PRÓXIMOS A AGOTARSE]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="513" y="21" width="52" height="20" forecolor="#464646" uuid="9dd0f978-cc4c-4ee0-9cb7-ff081cf0b1ed"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="480" y="21" width="40" height="20" forecolor="#464646" uuid="9e8d9d44-302e-4ae8-bb8d-12c19093046b"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="73" width="570" height="1" forecolor="#808080" uuid="faefaa51-cb17-45b9-9f23-7cd908a6c107"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<image>
+				<reportElement x="0" y="0" width="139" height="60" uuid="2933a445-a934-4f71-98b4-434582e49c98"/>
+				<imageExpression><![CDATA["logo_smiling.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="4" width="77" height="20" uuid="c26741cc-5074-4863-a8d4-0113cfd6442d"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["SUCURSAL:"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="4" width="172" height="20" uuid="5acb2f36-9afb-469b-8c54-a69bc3afd38d"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{clinica_nombre}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="23" width="570" height="1" forecolor="#808080" uuid="e2782c01-916a-4cd4-acd8-f4dfefd9d07f"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="23" splitType="Stretch">
+			<staticText>
+				<reportElement x="62" y="6" width="122" height="14" uuid="96635157-7cbc-486c-a70d-b4cbe02875de"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[NOMBRE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="6" width="73" height="13" uuid="3f9a27aa-60a5-458d-b41b-31c8e9c2b42b"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXISTENCIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="488" y="6" width="62" height="14" uuid="7b726f58-206a-4619-9e70-482c3b3f30d6"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[U. MEDIDA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="570" height="1" forecolor="#808080" uuid="7c4994d6-5009-4738-85f7-7b3de03cc89f"/>
+			</line>
+			<staticText>
+				<reportElement x="13" y="5" width="28" height="15" uuid="d05911ff-e7a5-46f9-b8fe-24deebd39908"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="6" width="188" height="14" uuid="9e892b42-99b1-48ce-a91c-095e0a44b923"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCIÓN]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="62" y="2" width="122" height="20" uuid="6692b473-4c14-43b4-937b-e25f6da18acc"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{insumo_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="198" y="2" width="188" height="20" uuid="d1c7902a-a273-40f3-a17d-06a3ddd55849"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{insumo_descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="489" y="2" width="66" height="20" uuid="40516212-d969-45f3-a230-a1591dda93d7"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{unidadmedida_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="13" y="2" width="42" height="20" uuid="3bdd0d93-ea33-4066-83f9-6c6039bcd726"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="2" width="52" height="20" uuid="6e2b3549-34c2-4903-8465-dfed2ca89b39"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{existencia_cantidad}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="9" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="9" splitType="Stretch"/>
+	</summary>
+</jasperReport>

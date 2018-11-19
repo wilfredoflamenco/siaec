@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>LISTADO DE INSUMOS MÉDICOS PRÓXIMOS A AGOTARSE</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+                <br/><br/>
+                <h:form id="reporteinsumos">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-xs-1"/>
+                        <div class="col-lg-4 col-md-6 col-sm-4 col-xs-10">
+                            <h6  align="center"><b>Seleccione una clínica:*</b></h6>
+                            <p:selectOneMenu id="sucursalnombre" value="#{reportesBean.clinicaId}" title="sucursal" style="width:100%" required="true" requiredMessage="Clínica es requerida.">
+                                <f:selectItem itemLabel="Seleccionar..." itemValue="#{null}"/>
+                                <f:selectItems value="#{catalogosBean.todosSucursalesDisponibles()}" var="sucursal" itemLabel="#{sucursal.clinicaNombre}" itemValue="#{sucursal.clinicaId}" />
+                            </p:selectOneMenu>
+                            <p:message for="sucursalnombre"/>
+                        </div>
+                        <div class="col-lg-4 col-md-3 col-sm-4 col-xs-1"/>
+                    </div>
+
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-lg-12" align="center">
+                            <h:commandLink action="#{reportesBean.repInsumosAgotados()}" class="btn btn-default buttonLevel1"
+                                           style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                                <i class="glyphicon glyphicon-search"></i> Ver reporte
+                                <f:setPropertyActionListener value="rep_listadoinsumos_agotados" target="#{reportesBean.nombArch}"/>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                    <br/><br/>
+                </h:form>
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

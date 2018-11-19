@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+
+        <h:form>
+            <p:panel id="patologiaconsultar" style="border: solid 1px #D5D5D5 ;border-top: 7px solid #066EAD; margin-left: 25px; margin-right: 25px">
+                <br/>
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"/>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <p:selectManyCheckbox disabled="true" value="#{expedientesBean.pacienteConsultar.patologiasList}" layout="grid" columns="3" style="width: 100%; font-size: 0.9em; opacity: 1.0">
+                            <f:selectItems value="#{expedientesBean.todosPatologiasDisponibles()}" var="patologia" itemLabel="#{patologia.patologiaNombre}"/>
+                        </p:selectManyCheckbox>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"/>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"/>
+                    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+                        <h6><b>Otros</b></h6>
+                        <p:inputTextarea id="otros" readonly="true" value="#{expedientesBean.pacienteConsultar.pacienteAntecedentes}" rows="4" maxlength="250" autoResize="false" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-1 col-md-1 col-sm-0 col-xs-0"/>
+                </div>
+                <br/>
+            </p:panel>
+        </h:form>
+        <p:spacer height="50"/>
+    </ui:composition>
+</html>
+

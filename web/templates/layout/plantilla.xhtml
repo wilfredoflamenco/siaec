@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <h:head>
+        <title>S I A E C</title>
+        <!-- Bootstrap version: 3.3.7 -->
+        <!-- Link Booststrap 3.3.7: http://blog.getbootstrap.com/2016/07/25/bootstrap-3-3-7-released/ -->
+        <link href="#{request.contextPath}/resources/css/bootstrap.min.css" type="text/css" media="screen" rel="stylesheet"  />
+        <!-- Archivo smiling.css, incluira los css del sistema personalizado-->
+        <link href="#{request.contextPath}/resources/css/estilosaldana.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/smiling.css" type="text/css" media="screen" rel="stylesheet"/>
+        <link href="#{request.contextPath}/resources/css/micss.css" type="text/css" media="screen" rel="stylesheet"/>
+        <link href="#{request.contextPath}/resources/css/w3.css" rel="stylesheet" type="text/css"/>
+        <link href="#{request.contextPath}/resources/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" media="screen"/>
+        <link href="#{request.contextPath}/resources/images/icono.png" rel="shortcut icon" type="image/x-icon"/>
+        <h:outputScript library="primefaces" name="jquery/jquery.js" />
+    </h:head>
+
+    <h:body class="contenedor">
+
+        <!-- Para referencia a la sección Menú -->
+        <div id="menu">
+            <ui:insert name="menu">
+                <ui:include src="../partials/menu.xhtml"/>
+            </ui:insert>
+        </div>
+        
+        <!-- Para referencia a la sección Banner -->
+        <div id="banner">
+            <ui:insert name="banner">
+                <ui:include src="../partials/banner.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <!-- Para referencia al contenido de la página -->
+        <div id="content" class="center_content">
+            <ui:insert name="content">Contenido</ui:insert>
+        </div>
+
+        <!-- Para referencia a la sección Pie de Página -->
+        <div id="bottom">
+            <ui:insert name="bottom">
+                <ui:include src="../partials/pie_pagina.xhtml"/>
+            </ui:insert>
+        </div>
+
+        <!-- Para referencia a archivos Java Scripts de Bootstrap -->
+        <script src="#{request.contextPath}/resources/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="#{request.contextPath}/resources/js/jquery.dataTables.min.js" type="text/javascript"></script>
+        <script src="#{request.contextPath}/resources/js/dataTables.bootstrap.min.js" type="text/javascript"></script>
+        <ui:insert name="scripts"/>
+    </h:body>
+
+</html>

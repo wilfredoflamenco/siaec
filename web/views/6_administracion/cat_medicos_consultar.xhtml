@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>VER MÉDICO</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h5><b>Datos generales</b></h5>
+                <hr style="border: solid 1px #D5D5D5"/>
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Primer nombre</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoPrimerNombre}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Segundo nombre</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoSegundoNombre}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Primer apellido</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoPrimerApellido}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Segundo Apellido</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoSegundoApellido}" readonly="true" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Fecha de nacimiento</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoFechaNacimiento}" readonly="true" style="width: 100%">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Sexo</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoSexo}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Correo electrónico</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoCorreo}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Especialidad</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoEspecialidad}" readonly="true" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Teléfono fijo</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoTelefonoCasa}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Teléfono movil</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoTelefonoMovil}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Número acreditación JVPO</b></h6>
+                        <p:inputText value="#{catalogosBean.medicoConsultar.medicoNumeroAcreditacion}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    </div>  
+                </div>
+                <br/>
+
+                <br/>
+                <h5><b>Dirección</b></h5>
+                <hr style="border: solid 1px #D5D5D5"/>
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Colonia/Urbanización</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionColonia}" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Calle/Avenida</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionCalle}" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Pasaje/Senda</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionPasaje}" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Polígono/Block</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionPoligono}" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Apartamento/Local</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionApartamento}" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Casa número</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionCasa}" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Departamento</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.municipioId.departamentoId.departamentoNombre}" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Municipio</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.municipioId.municipioNombre}" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/><br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-12" align="right">
+                        <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                onclick="window.location.href = 'cat_medicos_listado.xhtml'">
+                            <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Regresar
+                        </button>
+                    </div>
+                </div>
+                <br/>
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

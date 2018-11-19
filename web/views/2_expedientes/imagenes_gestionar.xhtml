@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"        
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:composition>
+
+        <h:form id="imagenes" enctype="multipart/form-data">
+
+            <p:panel id="imagengestionar" style="border: solid 1px #D5D5D5; border-top: 7px solid #066EAD; margin-left: 25px; margin-right: 25px">
+
+                <!-- Botón para guardar imágenes -->
+                <div class="row" style="margin-right: 10pt; margin-top: 10pt">
+                    <div class="col-md-1"/>
+                    <div class="col-md-10">
+                        <h7><b>Archivo (solamente se pueden subir imágenes en formato jpg)</b></h7>
+                        <p:panel style="border: solid 1px #D5D5D5; width: 103%">
+                            <p:fileUpload id="archivo" value="#{expedientesBean.file}" mode="simple" required="true" requiredMessage="Archivo es requerido." allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width: 100%"/>
+                        </p:panel>
+                        <p:message for="archivo"/>
+                    </div>
+                    <div class="col-md-1"/>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-1"/>
+                    <div class="col-md-10">
+                        <h7><b>Anotaciones</b></h7>
+                        <p:inputText id="anotacion" value="#{expedientesBean.imagenNueva.imagenAnotacion}" maxlength="250" validatorMessage="Anotación no válida." style="width: 100%"/>
+                        <p:message for="anotacion"/>
+                    </div>
+                    <div class="col-md-1"/>
+                </div>
+                <br/>
+
+                <div class="row">
+                    <div class="col-md-1"/>
+                    <div class="col-md-10">
+                        <h:commandLink type="submit" class="btn btn-default buttonLevel1" actionListener="#{expedientesBean.existeArchivo()}"
+                                       style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                            <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                            <f:event type="preValidate" listener="#{expedientesBean.setTabIndex(4)}"/>
+                        </h:commandLink>
+                    </div>
+                    <div class="col-md-1"/>
+                </div>
+                <br/>
+
+                <div class="row" id="tabla">
+                    <div class="col-md-1"/>
+                    <div class="col-md-10">
+                        <p:dataTable var="imagen" class="tabla-expediente" value="#{expedientesBean.todosImagenesPorPacienteGestionar()}" style="width: 100%">
+                            <p:column headerText="Imagen" style="text-align: center; width: 20%">
+                                <h:commandLink pt:data-toggle="modal" pt:data-target="#dialogo">
+                                    <img src="../../images/pacientes/#{expedientesBean.pacienteEditar.pacienteId}/#{imagen.imagenNombre}" alt="" width="100%" style="margin-bottom: 1pt"/>
+                                    <f:setPropertyActionListener value="#{imagen}" target="#{expedientesBean.imagenEditar}"/>
+                                    <p:ajax process="@this" update=":pacientegestionar:imagenes:imagenmodal :pacientegestionar:imagenes:titulomodal"/>
+                                </h:commandLink>
+                            </p:column>
+                            <p:column headerText="Fecha" style="text-align: center; width: 15%">
+                                <h:outputText value="#{imagen.imagenFechaCreacion}">
+                                    <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Anotaciones" style="width: 65%">
+                                <h:outputText value="#{imagen.imagenAnotacion}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </div>
+                    <div class="col-md-1"/>
+                </div>
+                <br/>
+
+                <!-- Modal Imagen -->
+                <div id="dialogo" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+
+                            <!-- Cabecera del modal -->
+                            <div class="modal-header" style="background-color: #066EAD">
+                                <button type="button" class="close btn btn-default" data-dismiss="modal" style="width: 20pt; height: 25pt; background-color: #FF7F27; color: white" aria-hidden="true"><b>X</b></button>
+                                <h:panelGroup id="titulomodal"><h5 class="modal-title"><b><font color="#fff">#{expedientesBean.imagenEditar.imagenNombre}</font></b></h5></h:panelGroup>
+                            </div>
+
+                            <!-- Cuerpo del modal -->
+                            <div class="modal-body">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h:panelGroup id="imagenmodal" style="text-align: center">
+                                            <!-- Nombre -->
+                                            <div class="col-xs-12" align="center">
+                                                <img src="../../images/pacientes/#{expedientesBean.pacienteEditar.pacienteId}/#{expedientesBean.imagenEditar.imagenNombre}" alt="" style="width: 100%; margin-bottom: 1pt"/>
+                                            </div>
+                                        </h:panelGroup> 
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </p:panel>
+
+        </h:form>
+
+    </ui:composition>
+</html>
+

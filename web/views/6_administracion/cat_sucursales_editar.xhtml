@@ -1,0 +1,166 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>EDITAR SUCURSAL</b></div>
+            <br/>
+            <h:form id="sucursaleditar">
+
+                <p:tabView styleClass="registro" style="margin-left: 10px; margin-right: 10px; border: solid 1px #D5D5D5">
+                    <p:tab title="Datos generales">
+
+                        <p:focus for="nombresucursaleditar"/>
+
+                        <br/>
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Nombre de la sucursal *</b></h6>
+                                <p:inputText id="nombresucursaleditar" value="#{catalogosBean.sucursalEditar.clinicaNombre}" required="true" maxlength="50"
+                                             style="width: 100%" validatorMessage="Nombre no válido." requiredMessage="Nombre es requerido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,50})*$"/>
+                                </p:inputText>
+                                <p:message for="nombresucursaleditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Correo</b></h6>
+                                <p:inputText id="correosucursaleditar" value="#{catalogosBean.sucursalEditar.clinicaCorreo}" maxlength="50" style="width: 100%"
+                                             validatorMessage="Correo no válido." placeholder="ejemplo@mail.com">
+                                    <f:validateRegex pattern="^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$"/>
+                                </p:inputText>
+                                <p:message for="correosucursaleditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono fijo</b></h6>
+                                <p:inputMask id="telefonofijo" value="#{catalogosBean.sucursalEditar.clinicaTelefonoFijo}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono movil</b></h6>
+                                <p:inputMask id="telefonomovil" value="#{catalogosBean.sucursalEditar.clinicaTelefonoMovil}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Número de consultorios</b></h6>
+                                <p:selectOneMenu id="sexo" value="#{catalogosBean.sucursalEditar.clinicaModulo}" style="width: 100%">
+                                    <f:selectItem itemLabel="1" itemValue="1" />
+                                    <f:selectItem itemLabel="2" itemValue="2" />
+                                    <f:selectItem itemLabel="3" itemValue="3" />
+                                    <f:selectItem itemLabel="4" itemValue="4" />
+                                    <f:selectItem itemLabel="5" itemValue="5" />
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Hora apertura</b></h6>
+                                <p:calendar id="apertura" value="#{catalogosBean.sucursalEditar.clinicaHorarioApertura}" readonly="true" class="tamaniocalendario" pattern="HH:mm" timeOnly="true"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Hora cierre</b></h6>
+                                <p:calendar id="cierre" value="#{catalogosBean.sucursalEditar.clinicaHorarioCierre}" readonly="true" class="tamaniocalendario" pattern="HH:mm" timeOnly="true"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            </div>
+                        </div>
+                        <br/><br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-12" align="right">
+                                <h:commandLink type="submit" class="btn btn-default" style="width: 100pt; height: 27pt; color: white; padding:5px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="#{catalogosBean.editarSucursal()}">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                                </h:commandLink>
+                                &nbsp;
+                                <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt; height: 27pt"
+                                        onclick="window.location.href = 'cat_sucursales_listado.xhtml'">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+
+                    </p:tab>
+
+                    <p:tab title="Dirección">
+
+                        <p:focus for="coloniasucursaleditar"/>
+
+                        <br/>
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Colonia/Urbanización *</b></h6>
+                                <p:inputText id="coloniasucursaleditar" value="#{catalogosBean.direccionEditar.direccionColonia}" required="true"
+                                             maxlength="50" requiredMessage="Colonia es requerida." style="width: 100%"/>
+                                <p:message for="coloniasucursaleditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Calle/Avenida</b></h6>
+                                <p:inputText id="callesucursaleditar" value="#{catalogosBean.direccionEditar.direccionCalle}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Pasaje/Senda</b></h6>
+                                <p:inputText id="pasajesucursaleditar" value="#{catalogosBean.direccionEditar.direccionPasaje}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Polígono/Block</b></h6>
+                                <p:inputText id="poligonosucursaleditar" value="#{catalogosBean.direccionEditar.direccionPoligono}" maxlength="50" style="width: 100%"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Apartamento/Local</b></h6>
+                                <p:inputText id="apartamentosucursaleditar" value="#{catalogosBean.direccionEditar.direccionApartamento}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Casa número</b></h6>
+                                <p:inputText id="casasucursaleditar" value="#{catalogosBean.direccionEditar.direccionCasa}" maxlength="10" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Departamento</b></h6>
+                                <p:selectOneMenu value="#{catalogosBean.direccionEditar.municipioId.departamentoId.departamentoId}" style="width: 100%">
+                                    <f:selectItems value="#{catalogosBean.todosDepartamentos()}" var="departamento" 
+                                                   itemLabel="#{departamento.departamentoNombre}" itemValue="#{departamento.departamentoId}" />
+                                    <p:ajax update="municipiosucursaleditar"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Municipio *</b></h6>
+                                <p:selectOneMenu id="municipiosucursaleditar" value="#{catalogosBean.direccionEditar.municipioId}" required="true"
+                                                 converter="#{municipioConvertidor}" requiredMessage="Municipio es requerido." style="width: 100%">
+                                    <f:selectItems value="#{catalogosBean.todosMunicipiosPorDepartamentoEditar()}" var="municipio"
+                                                   itemLabel="#{municipio.municipioNombre}" itemValue="#{municipio}" />
+                                </p:selectOneMenu>
+                                <p:message for="municipiosucursaleditar"/>
+                            </div>
+                        </div>
+                        <br/><br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-12" align="right">
+                                <h:commandLink type="submit" class="btn btn-default" style="width: 100pt; height: 27pt; color: white; padding:5px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="#{catalogosBean.editarDireccion()}">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                                </h:commandLink>
+                                &nbsp;
+                                <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt; height: 27pt"
+                                        onclick="window.location.href = 'cat_sucursales_listado.xhtml'">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+
+                    </p:tab>
+                </p:tabView>
+            </h:form>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

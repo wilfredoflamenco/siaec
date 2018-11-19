@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <ui:composition>
+        <br/>
+        <h:form id="pacienteeditar">
+            <p:tabView styleClass="registro" style="margin-left: 10px; margin-right: 10px; border: solid 1px #D5D5D5">
+                <p:tab title="Datos  del paciente">
+
+                    <p:growl id="mensaje" sticky="true" class="ui-growl"/> 
+
+                    <br/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Primer nombre</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacientePrimerNombre}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Segundo nombre</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteSegundoNombre}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Primer apellido</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacientePrimerApellido}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Segundo apellido</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteSegundoApellido}" readonly="true" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Fecha de nacimiento</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteFechaNacimiento}" readonly="true" style="width: 100%">
+                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </p:inputText>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Sexo</b></h6>
+                            <p:inputText value="#{(expedientesBean.pacienteConsultar.pacienteSexo)?'Masculino':'Femenino'}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Correo electrónico</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteCorreo}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Trabajo</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteTrabajo}" readonly="true" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Teléfono casa</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteTelefonoCasa}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Teléfono oficina</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteTelefonoOficina}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Teléfono movil</b></h6>
+                            <p:inputText value="#{expedientesBean.pacienteConsultar.pacienteTelefonoMovil}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <br/><br/>
+                            <p:selectBooleanCheckbox value="#{expedientesBean.pacienteConsultar.pacienteWhatsapp}" disabled="true"/> Posee Whatsapp
+                        </div>
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-size: smaller; font-style: italic;">
+                            <br/>
+                            <p:selectBooleanCheckbox id="correoMandar" value="#{expedientesBean.pacienteConsultar.pacienteNotificarCorreo}"/> Autoriza el envío de correos electrónicos. 
+                        </div>
+                    </div>
+                    <br/>
+
+                </p:tab>
+
+                <p:tab title="Dirección de residencia">
+
+                    <br/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Colonia/Urbanización</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.direccionColonia}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Calle/Avenida</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.direccionCalle}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Pasaje/Senda</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.direccionPasaje}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Polígono/Block</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.direccionPoligono}" readonly="true" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Apartamento/Local</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.direccionApartamento}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Casa número</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.direccionCasa}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Departamento</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.municipioId.departamentoId.departamentoNombre}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <h6><b>Municipio</b></h6>
+                            <p:inputText value="#{expedientesBean.direccionConsultar.municipioId.municipioNombre}" readonly="true" style="width: 100%"/>
+                        </div>
+                    </div>
+                    <br/>
+
+                </p:tab>
+            </p:tabView>
+        </h:form>
+        <p:spacer height="50"/>
+    </ui:composition>
+</html>
+

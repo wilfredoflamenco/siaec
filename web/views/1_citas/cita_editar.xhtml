@@ -1,0 +1,147 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+            <div class="banda1"><b>EDITAR CITA</b></div>
+            <br/>
+            <!-- Panel color blanco -->
+            <h:form id="form" >
+                <p:panel id="cita" style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5" styleClass="smiling-cita">
+
+                    <div class="container-fluid">
+
+                        <div class="row">
+                            <div class="col-md-8">
+
+                                <div class="col-md-6 col-sm-12">
+                                    <h6><b>Nombres *</b></h6>
+                                    <p:inputText id="nombre" onfocus="true" value="#{citasBean1.citaEditar.citaNombres}" style="width: 100%" required="true"
+                                                 validatorMessage="Nombre no válido." requiredMessage="Nombre es requerido.">
+                                        <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{2,25})*$"/>
+                                    </p:inputText>
+                                    <p:message for="nombre"/>
+                                </div>
+                                <div class="col-md-6 col-sm-12">
+                                    <h6><b>Apellidos *</b></h6>
+                                    <p:inputText id="apellido" value="#{citasBean1.citaEditar.citaApellidos}" style="width: 100%" required="true"
+                                                 validatorMessage="Apellido no válido." requiredMessage="Apellido es requerido.">
+                                        <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{2,25})*$"/>
+                                    </p:inputText>
+                                    <p:message for="apellido"/>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-6">
+                                    <h6><b>Teléfono </b></h6>
+                                    <p:inputMask id="telefono" value="#{citasBean1.citaEditar.citaTelefono}" mask="9999-9999" style="width: 100%"/>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <h6><b>Correo</b></h6>
+                                    <p:inputText id="correo" value="#{citasBean1.citaEditar.citaCorreo}" style="width: 100%" validatorMessage="Correo no válido.">
+                                        <f:validateRegex pattern="^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$"/>
+                                    </p:inputText>
+                                    <p:message for="correo"/>
+                                </div>
+
+
+                                <div class="col-md-6 col-sm-6">
+                                    <h6><b>Sucursal *</b></h6>
+                                    <p:selectOneMenu id="clinica2" value="#{citasBean1.citaEditar.clinicaId}"  converter="#{clinicaConvertidor}"  style="width: 100%" rendered="true">
+                                        <f:selectItems value="#{citasBean1.todasClinicas()}" var="clinica" 
+                                                       itemLabel="#{clinica.clinicaNombre}" itemValue="#{clinica}" />
+                                        <p:ajax update="console2" resetValues="false" rendered="true"  />
+                                    </p:selectOneMenu>
+                                    <p:message for="clinica2" />
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <h6><b>Médico</b></h6>
+                                    <p:selectOneMenu id="odontologos" value="#{citasBean1.citaEditar.medicoId}" converter="#{medicoConvertidor}" style="width: 100%" >
+                                        <f:selectItem itemLabel="Seleccione uno..." itemValue=""/>
+                                        <f:selectItems value="#{citasBean1.todoOdontologos()}" var="medico"
+                                                       itemLabel="Od. #{medico.medicoPrimerNombre} #{medico.medicoSegundoNombre} #{medico.medicoPrimerApellido}"
+                                                       itemValue="#{medico}"/>
+                                    </p:selectOneMenu>
+                                </div>
+
+
+                                <div class="col-md-12 col-sm-12">
+                                    <h6><b>Motivo de cita</b></h6>
+                                    <p:inputTextarea id="motivoCita" value="#{citasBean1.citaEditar.citaMotivo}" style="width: 100%"/>
+                                </div>    
+
+
+                                <div class="col-md-6 col-sm-12">
+                                    <h6><b>Estado *</b></h6>
+                                    <p:selectOneMenu id="estadoCita" value="#{citasBean1.citaEditar.citaEstado}" required="true" style="width: 100%"  >
+                                        <f:selectItem itemLabel="Reservado" itemValue="1"  />
+                                        <f:selectItem itemLabel="Confirmado" itemValue="2" />
+                                        <f:selectItem itemLabel="Atendido" itemValue="3" />
+                                        <f:selectItem itemLabel="Cancelado" itemValue="4" />
+                                    </p:selectOneMenu>
+                                    <p:message for="estadoCita" display="icon"/>
+                                </div>
+
+
+                            </div>
+
+                            <div class="col-md-4 ">
+
+                                <div class="col-md-12 col-sm-6 cita-espacio">
+
+                                    <center>
+                                        <h6><b>Fecha</b></h6>
+                                        <p:calendar value="#{citasBean1.citaDia}" navigator="true" mode="inline" mindate="#{citasBean1.fechaActual}" locale="es" styleClass="smiling-calendar">
+                                            <p:ajax event="dateSelect" update="console2" resetValues="true"/>
+                                        </p:calendar>
+                                    </center>
+                                </div>
+
+                                <div class="col-md-12 col-sm-6 cita-espacio">
+
+                                    <center>
+                                        <h6><b>Horarios </b></h6>
+                                        <p:selectOneRadio id="console2" value="#{citasBean1.horaE}" layout="grid" columns="2" required="true"
+                                                          requiredMessage="Seleccione un horario">
+                                            <f:selectItems value="#{citasBean1.horariosDisponibleSucursalEditar()}" var="h" 
+                                                           itemLabel="#{h.hora}" itemValue="#{h.valor}"/>
+                                        </p:selectOneRadio>
+                                        <p:message for="console2" />
+                                    </center>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-top: 22px; margin-bottom: 20px;">
+                            <div class="col-md-12">
+                                <center>
+                                    <p:commandButton type="sumbit" value="Guardar" update="cita" styleClass="btn-expediente-alternativa" action="#{citasBean1.actualizarCita()}" icon="icono-smiling glyphicon glyphicon-floppy-disk">
+                                    </p:commandButton>
+                                    <p:commandButton  type="reset" value="Regresar" styleClass="btn-expediente-cancelar" onclick="window.location.href = 'cita_listado_editar_proximas.xhtml'" icon="icono-smiling glyphicon glyphicon-share-alt"/>
+                                    <p:commandButton value="Restablecer" process="@this"  styleClass="btn-expediente-cancelar" icon="icono-smiling glyphicon glyphicon-repeat">
+                                        <p:ajax update="cita" resetValues="true" listener="#{citasBean1.resertEditarCita()}" />
+                                    </p:commandButton>
+                                    
+                                </center>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </p:panel>
+
+
+
+
+
+
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

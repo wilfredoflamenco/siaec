@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>PRUEBA DE IMAGEN</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h:form id="nuevaunidadmedida">
+
+                    <p:graphicImage value="#{imagenesBean.image}" id="imagen" width="300" height="150"/>
+
+                    <p:galleria value="" var="image" panelWidth="500" panelHeight="313" showCaption="true">
+                    </p:galleria>
+
+                    <p:commandButton action="#{imagenesBean.todasImagenes()}" update="imagen"/>
+
+
+                    <p:dataTable var="paciente" class="tabla-expediente" value="#{imagenesBean.todasImagenes()}" rowIndexVar="rowIndex">
+                        <p:column headerText="N°" style="text-align: center; width: 5%">
+                            <h:outputText value="#{rowIndex + 1}"/>
+                        </p:column>
+
+                        <p:column headerText="Expediente" style="text-align: center; width: 15%">
+                            <h:outputText value="#{paciente.stream}"/>
+                        </p:column>
+
+                        <p:column headerText="Nombre" style="text-align: center; width: 15%">
+                            <h:outputText value="#{paciente.name}"/>
+                        </p:column>
+
+                        <p:column headerText="Expediente" style="text-align: center; width: 15%">
+                            <h:outputText value="#{paciente.contentEncoding}"/>
+                        </p:column>
+
+                    </p:dataTable>
+
+
+
+                </h:form>
+
+            </p:panel>
+        </ui:define>
+
+
+
+    </ui:composition>
+
+</html>

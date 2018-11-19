@@ -1,0 +1,199 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>EDITAR MÉDICO</b></div>
+            <br/>
+
+            <h:form id="medicoeditar">
+
+                <p:tabView styleClass="registro" style="margin-left: 10px; margin-right: 10px; border: solid 1px #D5D5D5">
+                    <p:tab title="Datos generales">
+
+                        <p:focus for="primernombremedicoeditar"/>
+
+                        <br/>
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Primer nombre *</b></h6>
+                                <p:inputText id="primernombremedicoeditar" value="#{catalogosBean.medicoEditar.medicoPrimerNombre}" required="true" maxlength="25"
+                                             style="width: 100%" validatorMessage="Nombre no válido." requiredMessage="Nombre es requerido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="primernombremedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Segundo nombre</b></h6>
+                                <p:inputText id="segundonombremedicoeditar" value="#{catalogosBean.medicoEditar.medicoSegundoNombre}" maxlength="25" style="width: 100%"
+                                             validatorMessage="Nombre no válido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="segundonombremedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Primer apellido *</b></h6>
+                                <p:inputText id="primerapellidomedicoeditar" value="#{catalogosBean.medicoEditar.medicoPrimerApellido}" required="true" maxlength="25" style="width: 100%"
+                                             validatorMessage="Apellido no válido." requiredMessage="Apellido es requerido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="primerapellidomedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Segundo Apellido</b></h6>
+                                <p:inputText id="segundoapellidomedicoeditar" value="#{catalogosBean.medicoEditar.medicoSegundoApellido}" maxlength="25" style="width: 100%"
+                                             validatorMessage="Apellido no válido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="segundoapellidomedicoeditar"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Fecha de nacimiento</b></h6>
+                                <p:calendar id="fechanacimientomedicoeditar" value="#{catalogosBean.medicoEditar.medicoFechaNacimiento}" class="tamaniocalendario"
+                                            pattern="dd-MM-yyyy" mask="true" showOn="false" maxdate="#{catalogosBean.fechaActual}" validatorMessage="Fecha no válida."/>
+                                <p:message for="fechanacimientomedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Sexo *</b></h6>
+                                <p:selectOneMenu id="sexomedicoeditar" value="#{catalogosBean.medicoEditar.medicoSexo}" required="true" requiredMessage="Sexo no válido." style="width: 100%">
+                                    <f:selectItem itemLabel="Masculino" itemValue="true" />
+                                    <f:selectItem itemLabel="Femenino" itemValue="false" />
+                                </p:selectOneMenu>
+                                <p:message for="sexomedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Correo electrónico</b></h6>
+                                <p:inputText id="correomedicoeditar" value="#{catalogosBean.medicoEditar.medicoCorreo}" maxlength="50" style="width: 100%"
+                                             validatorMessage="Correo no válido." placeholder="ejemplo@mail.com">
+                                    <f:validateRegex pattern="^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$"/>
+                                </p:inputText>
+                                <p:message for="correomedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Especialidad</b></h6>
+                                <p:inputText id="especialidadmedicoeditar" value="#{catalogosBean.medicoEditar.medicoEspecialidad}" maxlength="100" style="width: 100%"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono fijo</b></h6>
+                                <p:inputMask id="telefonofijomedicoeditar" value="#{catalogosBean.medicoEditar.medicoTelefonoCasa}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono movil</b></h6>
+                                <p:inputMask id="telefonomovilmedicoeditar" value="#{catalogosBean.medicoEditar.medicoTelefonoMovil}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Número acreditación JVPO</b></h6>
+                                <p:inputText id="acreditacionmedicoeditar" value="#{catalogosBean.medicoEditar.medicoNumeroAcreditacion}" maxlength="10" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            </div>
+                        </div>
+                        <br/><br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-12" align="right">
+                                <h:commandLink type="submit" class="btn btn-default" style="width: 100pt; height: 27pt; color: white; padding:5px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="#{catalogosBean.editarMedico()}">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                                </h:commandLink>
+                                &nbsp;
+                                <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                        onclick="window.location.href = 'cat_medicos_listado.xhtml'">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+
+                    </p:tab>
+
+                    <p:tab title="Dirección">
+
+                        <p:focus for="coloniamedicoeditar"/>
+
+                        <br/>
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Colonia/Urbanización *</b></h6>
+                                <p:inputText id="coloniamedicoeditar" value="#{catalogosBean.direccionEditar.direccionColonia}" required="true"
+                                             maxlength="50" requiredMessage="Colonia es requerida." style="width: 100%"/>
+                                <p:message for="coloniamedicoeditar"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Calle/Avenida</b></h6>
+                                <p:inputText id="callemedicoeditar" value="#{catalogosBean.direccionEditar.direccionCalle}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Pasaje/Senda</b></h6>
+                                <p:inputText id="pasajemedicoeditar" value="#{catalogosBean.direccionEditar.direccionPasaje}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Polígono/Block</b></h6>
+                                <p:inputText id="poligonomedicoeditar" value="#{catalogosBean.direccionEditar.direccionPoligono}" maxlength="50" style="width: 100%"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Apartamento/Local</b></h6>
+                                <p:inputText id="apartamentomedicoeditar" value="#{catalogosBean.direccionEditar.direccionApartamento}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Casa número</b></h6>
+                                <p:inputText id="casamedicoeditar" value="#{catalogosBean.direccionEditar.direccionCasa}" maxlength="10" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Departamento</b></h6>
+                                <p:selectOneMenu value="#{catalogosBean.direccionEditar.municipioId.departamentoId.departamentoId}" style="width: 100%">
+                                    <f:selectItems value="#{catalogosBean.todosDepartamentos()}" var="departamento" 
+                                                   itemLabel="#{departamento.departamentoNombre}" itemValue="#{departamento.departamentoId}" />
+                                    <p:ajax update="municipiomedicoeditar"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Municipio *</b></h6>
+                                <p:selectOneMenu id="municipiomedicoeditar" value="#{catalogosBean.direccionEditar.municipioId}" required="true"
+                                                 converter="#{municipioConvertidor}" requiredMessage="Municipio es requerido." style="width: 100%">
+                                    <f:selectItems value="#{catalogosBean.todosMunicipiosPorDepartamentoEditar()}" var="municipio"
+                                                   itemLabel="#{municipio.municipioNombre}" itemValue="#{municipio}" />
+                                </p:selectOneMenu>
+                                <p:message for="municipiomedicoeditar"/>
+                            </div>
+                        </div>
+                        <br/><br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-12" align="right">
+                                <h:commandLink type="submit" class="btn btn-default" style="width: 100pt; height: 27pt; color: white; padding:5px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="#{catalogosBean.editarDireccion()}">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                                </h:commandLink>
+                                &nbsp;
+                                <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                        onclick="window.location.href = 'cat_medicos_listado.xhtml'">
+                                    <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                                </button>
+                            </div>
+                        </div>
+                        <br/>
+
+                    </p:tab>
+                </p:tabView>
+            </h:form>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

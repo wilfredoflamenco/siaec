@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+        <ui:composition>
+            
+            <!-- Panel color blanco -->
+            <p:panel style="border: solid 1px #D5D5D5 ;border-top: 7px solid #066EAD; margin-left: 25px; margin-right: 25px">
+
+                <h:form>
+
+                    <div class="row">
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                            <h6><b>Fecha</b></h6>
+                            <p:inputText value="#{expedientesBean.consultaSeleccionada.consultaFechaCreacion}" readonly="true" style="width: 100%">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                            </p:inputText>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <h6><b>Atendido por</b></h6>
+                            <p:inputText value="Dr. #{expedientesBean.consultaSeleccionada.medicoId.medicoPrimerNombre} #{expedientesBean.consultaSeleccionada.medicoId.medicoPrimerApellido}" style="width: 100%" readonly="true"/>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+                            <h6><b>Según promoción</b></h6>
+                            <p:inputText value="#{expedientesBean.consultaSeleccionada.promocionId.promocionNombre}" style="width: 100%" readonly="true"/>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Motivo de la consulta</b></h6></div>
+                                <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                    <h:inputTextarea value="#{expedientesBean.consultaSeleccionada.consultaMotivo}" readonly="true" style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0" rows="6"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Diagnóstico</b></h6></div>
+                                <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                    <h:inputTextarea value="#{expedientesBean.consultaSeleccionada.consultaDiagnostico}" readonly="true" style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0" rows="6"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Notas</b></h6></div>
+                                <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                    <h:inputTextarea value="#{expedientesBean.consultaSeleccionada.consultaNota}" readonly="true" style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0" rows="6"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                            <div class="panel panel-default">
+                                <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Receta</b></h6></div>
+                                <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                    <h:inputTextarea value="#{expedientesBean.consultaSeleccionada.consultaReceta}" readonly="true" style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0" rows="6"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row">
+                        <div class="col-md-12" align="right">
+                            <h:commandLink class="btn btn-default buttonPopupLevel2" action="paciente_expediente_consultar.xhtml"
+                                           style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:Gray; font-weight:bold; border:solid 1px Gray; -webkit-appearance:none; border-radius: 5px">
+                                <i class="glyphicon glyphicon-share-alt"></i> Regresar
+                                <f:actionListener binding="#{expedientesBean.setTabIndex(2)}"/>
+                            </h:commandLink>
+                        </div>
+                    </div>
+                    
+                </h:form>
+                
+            </p:panel>
+            <p:spacer height="50"/>
+            
+        </ui:composition>
+</html>

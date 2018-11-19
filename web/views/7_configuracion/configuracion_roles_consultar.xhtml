@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="meta-data">
+            <f:metadata>
+            </f:metadata>
+        </ui:define>
+        <ui:define name="content">
+            <div class="banda1"><b>VER ROL</b></div>
+            <br/>
+            <p:tooltip />
+
+            <p:panel id="roles-panel" style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+                <!-- Botón para agregar un nuevo registro -->
+                <h:form id="roles-formulario"  class="container" >
+                    <br/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <h6><b>Nombre *</b></h6>
+                            <p:inputText id="nombreRol" value="#{AdministracionBean.rolConsultar.rolNombre}" disabled="true"  style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                            <h6><b>Descripción</b></h6>
+                            <p:inputText id="descripcionRol" value="#{AdministracionBean.rolConsultar.rolDescripcion}" disabled="true" style="width: 100%" />
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <h6><b>Privilegios</b></h6>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Agenda</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu1}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(1)}" var="submenu1" itemLabel="#{submenu1.sumbenuNombre}" itemValue="#{submenu1}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Paciente</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu2}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(2)}" var="submenu2" itemLabel="#{submenu2.sumbenuNombre}" itemValue="#{submenu2}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Insumos</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu3}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(3)}" var="submenu3" itemLabel="#{submenu3.sumbenuNombre}" itemValue="#{submenu3}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Promociones</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu4}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(4)}" var="submenu4" itemLabel="#{submenu4.sumbenuNombre}" itemValue="#{submenu4}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Reportes</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu5}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(5)}" var="submenu5" itemLabel="#{submenu5.sumbenuNombre}" itemValue="#{submenu5}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Administración</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu6}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(6)}" var="submenu6" itemLabel="#{submenu6.sumbenuNombre}" itemValue="#{submenu6}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Configuración</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu7}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(7)}" var="submenu7" itemLabel="#{submenu7.sumbenuNombre}" itemValue="#{submenu7}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+
+                        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                            <h6><b>Ayuda</b></h6>
+                            <p:selectManyCheckbox value="#{AdministracionBean.submenu8}" layout="grid" columns="1" converter="#{subMenusConvertidor}">
+                                <f:selectItems value="#{AdministracionBean.subMenusPorMenu(8)}" var="submenu7" itemLabel="#{submenu7.sumbenuNombre}" itemValue="#{submenu7}"/>
+                            </p:selectManyCheckbox>
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <br/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-12" align="right">
+                            <h:commandLink class="btn btn-default buttonPopupLevel2" action="configuracion_roles_listado.xhtml"
+                                           style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:Gray; font-weight:bold; border:solid 1px Gray; -webkit-appearance:none; border-radius: 5px">
+                                <i class="glyphicon glyphicon-share-alt"></i> Regresar
+                            </h:commandLink>
+                        </div>
+                    </div>
+
+                </h:form>
+            </p:panel>
+
+            <br/>
+            <br/>
+            <br/>
+
+        </ui:define>
+    </ui:composition>
+
+</html>

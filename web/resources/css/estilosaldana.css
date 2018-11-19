@@ -1,0 +1,387 @@
+/* Numero de p:inputnumber */
+.smiling-numero-100 input{     width: 100%; }
+
+/* Clase para opciones avanzadas de correo */
+.acordion-smiling-white > .ui-state-default{
+    background: white;
+}
+.acordion-smiling-white > .ui-state-hover{
+    box-shadow: none;
+}
+
+/*Boton cancelar*/
+.ui-widget-content .btn-expediente-cancelar{
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    text-shadow: none;
+    color: white;
+    background: #808080;
+}
+
+/*Mensaje*/
+.ui-dialog .ui-dialog-titlebar{
+    background: #066EAD;
+    text-shadow: none;
+    color: white;
+
+}
+
+.ui-widget-header .ui-icon{
+    
+    background-image: url(/Smiling/resources/images/ui-icons_FFFFFF_256x240.png?ln=primefaces-aristo);
+}
+
+.ui-dialog .ui-dialog-titlebar-close, .ui-dialog .ui-dialog-titlebar-minimize, .ui-dialog .ui-dialog-titlebar-maximize{
+    background: orange;
+}
+
+/*Calendario */
+.smiling-calendar .ui-datepicker .ui-datepicker-header{
+    
+    background: #066EAD;
+}
+
+@media ( max-width:992px) and (min-width: 768px){
+.cita-espacio{
+        margin-top: 35px;
+       
+        
+    }
+}
+
+/*Para los iconos de boostrap*/
+.icono-smiling{
+
+    text-indent: 0px !important; 
+}
+
+/* No recueerdo donde se ocupa*/
+.margen-estadisticas-tablero{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+@media ( max-width:992px){
+    .margen-estadisticas-cirular{
+        margin-top: 20px;
+    }
+}
+
+/* Para tamaño de calendario e inputNumber */
+.tamaniocien input{
+    width: 100pt !important;   
+}
+
+/* Para tamaño de calendario */
+.tamaniocalendario input{
+    width: 100% !important;   
+}
+
+/* Para estilo azul de las tablas */
+.table-boostrap-expediente{
+    border: 2px solid #90B6DE;
+ }
+ 
+ .table-boostrap-expediente > thead > tr > th{
+     border: none;
+     text-align: center;
+ }
+ 
+ .table-boostrap-expediente > thead {
+     background: #066EAD;
+     color: white; 
+ }
+ 
+ .table-boostrap-expediente > tbody > tr > td {
+     border-left: none;
+     border-right: none;
+ }
+
+ 
+ /* Para botones dentro de tabla */
+ .btn-tabla-expediente2{
+    /* background-color: #2399E5;*/
+    background-color: #066EAD;
+    color: white !important;
+    border-radius: 5px;
+ }
+ 
+/* Para responsibidad del expediente */
+.expediente-tabs ul{
+    display: flex;
+ }
+
+.expediente-tabs .ui-tabs-nav li{
+   display:flex;
+  align-items: center;
+  justify-content: center;
+   width: 19.80%;  
+}
+
+@media (max-width:600px){
+    .expediente-tabs .ui-tabs-nav li{
+        width: 128px;
+    }
+}
+ 
+/* Para el pie de página */
+#phooterResponsive
+{
+    background-color:#F7F7F7;
+    width:98%;
+    border-top-style:solid;
+    border-top-color:#8699BF;
+    border-top-color:#066EAD;
+    border-top-width:1px;
+    text-align:center;
+    padding-top:5px;
+    padding-bottom:20px;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:20px;
+    text-align:center;
+}
+
+
+/* Le da el fondo azul a los contenidos */
+.contenedor
+{
+    background-color:#F7F7F7;
+    padding-bottom:10px;
+    width:100%;
+}	
+
+/* Sección donde va el logo */
+#bandaLogoResponsive
+{
+    width:100%;
+    border-bottom-width:0px;
+    padding:0px;
+    padding-top:0px;
+    padding-bottom:0px;
+    margin-bottom:0px;
+    margin-left:auto;
+    margin-right:auto;
+    background-color:#F7F7F7;
+}
+
+/* Banda gris para el título del formulario */
+.banda1
+{
+    border-radius: 3px;
+    text-align:left; 
+    color:White; 
+    background-color:#636975;
+    padding:10px
+}
+
+/* Botón naranja */
+.buttonLevel1
+{
+    padding:5px;
+    background-color:#FB6F52;
+    font-weight:bold;
+    color:White;
+    border:solid 1px #FB6F52;
+    -webkit-appearance:none;
+    border-radius: 0;
+    width:140px;
+    height:40px;
+    color:White;
+}	
+
+/* Botón naranja */
+.buttonLevel1:hover
+{
+    padding:5px;
+    background-color:#fc7458;
+    font-weight:bold;
+    color:White;
+    cursor:pointer;
+    border:solid 1px #fc7458;
+    -webkit-appearance:none;
+    border-radius: 0;
+}
+
+/* Botón naranja */
+.botonNaranja
+{
+    padding:5px;
+    background-color:#FB6F52;
+    font-weight:bold;
+    color:White;
+    border:solid 1px #FB6F52;
+    -webkit-appearance:none;
+    border-radius: 0;
+    width:100px;
+    height:27px;
+    color:White;
+}
+
+/* Botón naranja */
+.botonGuardar
+{
+    width:180px;
+    height:40px;
+    color:White;
+}
+
+/* Botón gris */
+.buttonPopupLevel2
+{
+    padding:7px;
+    background-color:Gray;
+    font-weight:bold;
+    color:White;
+    border:solid 1px Gray;
+    -webkit-appearance:none;
+    border-radius: 0;
+    width:100px;
+}		
+
+/* Botón gris */
+.buttonPopupLevel2:hover
+{
+    padding:7px;
+    background-color:Gray;
+    font-weight:bold;
+    color:White;
+    cursor:pointer;
+    border:solid 1px Gray;
+    -webkit-appearance:none;
+    border-radius: 0;
+}
+
+/*Botones de los expedientes (Naranjas)*/
+.ui-widget-content .btn-expediente
+{
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-shadow: none;
+    color: white;
+    background: #FB6F52;
+}
+
+/*Para color azul en las tablas*/
+ .tabla-expediente .ui-state-default
+ {
+    background: #066EAD;
+    color: white;
+    text-shadow:none;
+}
+
+/* Para mover mensaje */
+.ui-growl { left:100px; }
+
+/* Para Barra de Navegación */
+.navbar-default {
+  background-color: #066ead;
+  border-color: #055d92;
+}
+.navbar-default .navbar-brand {
+  color: #d1e7f4;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #e1ebf2;
+}
+.navbar-default .navbar-text {
+  color: #d1e7f4;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #d1e7f4;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #e1ebf2;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #e1ebf2;
+  background-color: #055d92;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #e1ebf2;
+  background-color: #055d92;
+}
+.navbar-default .navbar-toggle {
+  border-color: #055d92;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #055d92;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #d1e7f4;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #d1e7f4;
+}
+.navbar-default .navbar-link {
+  color: #d1e7f4;
+}
+.navbar-default .navbar-link:hover {
+  color: #e1ebf2;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #d1e7f4;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #e1ebf2;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #e1ebf2;
+    background-color: #055d92;
+  }
+}
+
+/* Para Tabla azul */
+.mGrid {    
+    width: 100%;    
+    background-color: White;    
+    border: solid 1px #CCCCCC;    
+    border-collapse:collapse;    
+}   
+.mGrid td {    
+    padding: 5px;    
+    border-bottom: solid 1px #c1c1c1; 
+    border-bottom: solid 1px #DCDCDC;    
+    /* color: #717171; */ 
+    background-color:White;     
+    padding-top:15px;
+    padding-bottom:15px;
+}   
+.mGrid th {    
+    padding:7px;    
+    color: White;
+    font-weight:bold;     
+    font-size: 11px;
+    background-color:#41B7E5;  
+    background-color:#066EAD;  
+    /* background: #717171 url('../imagenes/bg_box.png') repeat-x top; 
+    */
+    text-decoration:none;
+    font-family: 'Segoe UI', Frutiger, 'Frutiger Linotype', 'Dejavu Sans', 'Helvetica Neue', Arial, sans-serif;
+    font-size: 15px;
+    font-variant: normal;
+    font-weight:300;
+    line-height: 22px;
+}   
+.mGrid .footer {    
+    padding: 4px 2px;    
+    color: Black;    
+    font-size: 11px;
+    background-color:White; 
+} 

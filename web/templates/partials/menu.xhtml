@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <!-- Menú -->
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+
+            <!-- Botón INICIO -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"/>
+                <a class="navbar-brand" href="#{request.contextPath}/dashboard.xhtml" style="color:White;font-family:Arial;font-size:14px;cursor:pointer;text-align:Left;padding-right:20px;"><b>INICIO</b></a>
+            </div>
+
+            <!-- Menú dinámico -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+                <p:repeat value="#{usuarioBean.appSession.usuario.rolId.menusList}" var="menu">
+                <ul class="nav navbar-nav navbar-default">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:White;font-family:Arial;font-size:12px;cursor:pointer;text-align:Left;padding-right:20px;"><b>#{menu.menuNombre}</b><span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <p:repeat value="#{usuarioBean.appSession.usuario.rolId.SubMenuPorMenu(menu.menuId)}" var="submenu">
+                                <li><a href="#{request.contextPath}#{submenu.submenuUrl}">#{submenu.sumbenuNombre}</a></li>
+                            </p:repeat>
+                        </ul>
+                    </li>
+                </ul>
+                </p:repeat>  
+
+                <!-- Opción Perfil -->
+                <h:form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color:White;font-family:Arial;font-size:14px;cursor:pointer;text-align:Left;padding-right:20px;"><b>#{appSession.usuario.usuarioNombre} (#{appSession.usuario.rolId.rolNombre}) </b><span class="glyphicon glyphicon-user"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#{request.contextPath}/views/9_perfil/perfil_editar.xhtml">Perfil</a></li>
+                                <li><a href="#{request.contextPath}/views/9_perfil/cambiar_contrasenia.xhtml">Cambiar contraseña</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><h:commandLink value="Cerrar Sesión" action="#{usuarioBean.salirSistema()}"/></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </h:form>
+
+                <!-- Opción Alerta -->
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <h:panelGroup rendered="#{((insumosBean.todosSolicitudInsumosAgotados().size()) != 0)}">
+                            <a href="#{request.contextPath}/views/3_insumos/insumo_solicitud_listado.xhtml" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="color:#C52E36;font-family:Arial;font-size:20px;cursor:pointer;text-align:Left;padding-right:20px;" data-toggle="tooltip" data-placement="bottom" title="Insumos agotados"><span class="glyphicon glyphicon glyphicon-bell"></span></a>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{((insumosBean.todosSolicitudInsumosPorAgotarse().size()) != 0) and ((insumosBean.todosSolicitudInsumosAgotados().size()) == 0)}">
+                            <a href="#{request.contextPath}/views/3_insumos/insumo_solicitud_listado.xhtml" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="color:Yellow;font-family:Arial;font-size:20px;cursor:pointer;text-align:Left;padding-right:20px;" data-toggle="tooltip" data-placement="bottom" title="Insumos próximos a agotarse"><span class="glyphicon glyphicon glyphicon-bell"></span></a>
+                        </h:panelGroup>
+                        <h:panelGroup rendered="#{((insumosBean.todosSolicitudInsumos().size()) == 0)}">
+                            <a class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false" style="color:#1A2947;font-family:Arial;font-size:20px;cursor:pointer;text-align:Left;padding-right:20px;" data-toggle="tooltip" data-placement="bottom" title="No hay alerta de insumos"><span class="glyphicon glyphicon glyphicon-bell"></span></a>
+                        </h:panelGroup>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+</html>
+

@@ -1,0 +1,150 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>BUSCAR PACIENTE</b></div>
+            <br/>
+
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-0">
+                </div>
+                <div class="col-lg-8 col-md-8 col-sm-10 col-xs-12">
+                    <h:form id="listadoPacientes">
+                        <!-- Tab Panel -->
+                        <p:tabView styleClass="registro" style="margin-right: 10pt; margin-left: 10pt">
+                            <p:tab title="Buscar por nombre y apellidos">
+                                <div class="row"><br/>
+                                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                        Que su nombre incluya la palabra
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                        <p:inputText id="nombreconsultar" value="#{expedientesBean.nombre}" style="width: 100%">
+                                            <p:ajax event="keyup" update="panelnombre" listener="#{expedientesBean.todosPacientesPorNombre()}" />
+                                        </p:inputText>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <div class="row"><br/>
+                                    <div class="col-lg-12">
+                                        <!-- Aqui va la tabla -->
+                                        <h:panelGroup id="panelnombre">
+                                            <p:dataTable var="paciente" class="tabla-expediente" value="#{expedientesBean.todosPacientesPorNombre()}" rowIndexVar="rowIndex"  emptyMessage="Ningun dato disponible en esta tabla" style="border: 2px solid #90B6DE">
+                                                <p:column headerText="N°" style="text-align: center; width: 5%">
+                                                    <h:outputText value="#{rowIndex + 1}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Expediente" style="text-align: center; width: 15%">
+                                                    <h:outputText value="#{paciente.pacienteId}">
+                                                        <f:convertNumber minIntegerDigits="5" pattern="#####"/>
+                                                    </h:outputText>
+                                                </p:column>
+
+                                                <p:column headerText="Nombres" style="width: 25%">
+                                                    <h:outputText value="#{paciente.pacientePrimerNombre} #{paciente.pacienteSegundoNombre}" />
+                                                </p:column>
+
+                                                <p:column headerText="Apellidos" style="width: 25%">
+                                                    <h:outputText value="#{paciente.pacientePrimerApellido} #{paciente.pacienteSegundoApellido}" />
+                                                </p:column>
+
+                                                <p:column headerText="Teléfono" style="text-align: center; width: 15%">
+                                                    <h:outputText value="#{expedientesBean.telefonoPaciente(paciente)}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Ver" style="text-align: center; width: 15%">
+                                                    <h:commandLink action="paciente_expediente_consultar.xhtml" class="btn btn-default glyphicon glyphicon-search btn-sm btn-tabla-expediente2" title="Consultar">
+                                                        <f:setPropertyActionListener value="#{paciente}" target="#{expedientesBean.pacienteConsultar}"/>
+                                                        <f:actionListener binding="#{expedientesBean.direccionPaciente()}"/>
+                                                        <f:actionListener binding="#{expedientesBean.setTabIndex(0)}"/>
+                                                    </h:commandLink>
+                                                </p:column>
+
+                                            </p:dataTable>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+
+                            </p:tab>
+
+                            <p:tab title="Buscar por número de expediente">
+                                <div class="row"><br/>
+                                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                        Número de expediente
+                                    </div>
+                                    <div class="col-lg-4 col-md-4 col-sm-5 col-xs-5">
+                                        <p:inputNumber id="expedienteconsultar" value="#{expedientesBean.expediente}" decimalPlaces="0" maxlength="5" style="width: 100%">
+                                            <p:ajax event="keyup" update="panelexpediente" listener="#{expedientesBean.todosPacientesPorExpediente()}" />
+                                        </p:inputNumber>
+                                    </div>
+                                    <div class="col-lg-2 col-md-2 col-sm-1 col-xs-1">
+                                    </div>
+                                </div>
+                                <br/>
+
+                                <div class="row"><br/>
+                                    <div class="col-lg-12">
+                                        <!-- Aqui va la tabla -->
+                                        <h:panelGroup id="panelexpediente">
+                                            <p:dataTable var="pac" class="tabla-expediente" value="#{expedientesBean.todosPacientesPorExpediente()}" rowIndexVar="rowIndex"  emptyMessage="Ningun dato disponible en esta tabla" style="border: 2px solid #90B6DE">
+                                                <p:column headerText="N°" style="text-align: center; width: 5%">
+                                                    <h:outputText value="#{rowIndex + 1}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Expediente" style="text-align: center; width: 15%">
+                                                    <h:outputText value="#{pac.pacienteId}">
+                                                        <f:convertNumber minIntegerDigits="5" pattern="#####"/>
+                                                    </h:outputText>
+                                                </p:column>
+
+                                                <p:column headerText="Nombres" style="width: 25%">
+                                                    <h:outputText value="#{pac.pacientePrimerNombre} #{pac.pacienteSegundoNombre}" />
+                                                </p:column>
+
+                                                <p:column headerText="Apellidos" style="width: 25%">
+                                                    <h:outputText value="#{pac.pacientePrimerApellido} #{pac.pacienteSegundoApellido}" />
+                                                </p:column>
+
+                                                <p:column headerText="Teléfono" style="text-align: center; width: 15%">
+                                                    <h:outputText value="#{expedientesBean.telefonoPaciente(pac)}"/>
+                                                </p:column>
+
+                                                <p:column headerText="Ver" style="text-align: center; width: 15%">
+                                                    <h:commandLink action="paciente_expediente_consultar.xhtml" class="btn btn-default glyphicon glyphicon-search btn-sm btn-tabla-expediente2" title="Consultar">
+                                                        <f:setPropertyActionListener value="#{pac}" target="#{expedientesBean.pacienteConsultar}"/>
+                                                        <f:actionListener binding="#{expedientesBean.setTabIndex(0)}"/>
+                                                    </h:commandLink>
+                                                </p:column>
+
+                                            </p:dataTable>
+                                        </h:panelGroup>
+                                    </div>
+                                </div>
+                            </p:tab>
+                        </p:tabView>
+                    </h:form>
+                    <br/>
+
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-1 col-xs-0">
+                </div>
+            </div>
+
+            <br/>
+
+        </ui:define>
+    </ui:composition>
+</html>

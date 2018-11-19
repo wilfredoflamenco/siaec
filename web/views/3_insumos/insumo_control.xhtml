@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>CONTROL DE INSUMO</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h:form id="editarinsumo">
+
+                    <p:focus for="sucursalinsumocontrol"/>
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h6><b>Nombre</b></h6>
+                            <p:inputText id="nombreinsumocontrol" value="#{insumosBean.insumoSeleccionado.insumoNombre}" readonly="true" style="width: 100%"/>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-0">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h6><b>Sucursal*</b></h6>
+                            <p:selectOneMenu id="sucursalinsumocontrol" value="#{insumosBean.sucursalId}" style="width: 100%"
+                                             required="true" requiredMessage="Sucursal es requerida.">
+                                <f:selectItem itemLabel="Seleccionar..." itemValue="" />
+                                <f:selectItems value="#{insumosBean.todasClinicasDisponibles()}" var="clini"
+                                               itemLabel="#{clini.clinicaNombre}" itemValue="#{clini.clinicaId}"/>
+                                <p:ajax update="cantidadinsumocontrol"/>
+                            </p:selectOneMenu>
+                            <p:message for="sucursalinsumocontrol"/>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                            <h6><b>Entrada/Salida*</b></h6>
+                            <p:selectOneMenu id="accioninsumocontrol" value="#{insumosBean.movimientoNuevo.movimientoTipo}" style="width: 100%"
+                                             required="true" requiredMessage="Acción es requerida.">
+                                <f:selectItem itemLabel="Seleccionar..." itemValue=" " />
+                                <f:selectItem itemLabel="Entrada" itemValue="true" />
+                                <f:selectItem itemLabel="Salida" itemValue="false" />
+                                <p:ajax update="cantidadinsumocontrol"/>
+                            </p:selectOneMenu>
+                            <p:message for="accioninsumocontrol"/>
+                        </div>  
+                        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                            <h6><b>Cantidad*</b></h6>
+                            <p:inputNumber id="cantidadinsumocontrol" value="#{insumosBean.movimientoNuevo.movimientoCantidad}" decimalPlaces="0" maxlength="6"
+                                           required="true" requiredMessage="Cantidad es requerida." maxValue="#{insumosBean.limiteCantidad()}" minValue="0" class="tamaniocien"/>
+                            <p:message for="cantidadinsumocontrol"/>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                    </div>
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-lg-12" align="center">
+                            <h:commandLink type="submit" class="btn btn-default botonNaranja" action="#{insumosBean.guardarMovimiento()}"
+                                           style="font-size: 11pt; width: 100pt; height: 30pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                                <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                            </h:commandLink>
+                            &nbsp;
+                            <button type="reset" class="btn btn-default buttonPopupLevel2" onclick="window.location.href = 'insumo_control_listado.xhtml'"
+                                    style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:grey; font-weight:bold; border:solid 1px grey; -webkit-appearance:none; border-radius: 5px">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+                </h:form>    
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

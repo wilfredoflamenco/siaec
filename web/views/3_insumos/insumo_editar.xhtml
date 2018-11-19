@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>EDITAR INSUMO</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h:form id="editarinsumo">
+
+                    <p:focus for="nombreinsumoeditar"/>
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h6><b>Nombre*</b></h6>
+                            <p:inputText id="nombreinsumoeditar" value="#{insumosBean.insumoEditar.insumoNombre}" required="true" maxlength="50" style="width: 100%"
+                                         validatorMessage="Nombre no válido." requiredMessage="Nombre es requerido.">
+                                <f:validateRegex pattern="^([a-zA-Z0-9 ÑÁÉÍÓÚÜñáéíóúü.]{3,50})*$"/>
+                            </p:inputText>
+                            <p:message for="nombreinsumoeditar"/>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h6><b>Tipo de insumo*</b></h6>
+                            <p:selectOneMenu id="tipoinsumoeditar" value="#{insumosBean.insumoEditar.tipoinsumoId}" required="true"
+                                             requiredMessage="Tipo es requerido." converter="#{tipoInsumoConvertidor}" style="width: 100%">
+                                <f:selectItems value="#{insumosBean.todosTiposInsumosDisponibles()}" var="tipo" itemLabel="#{tipo.tipoinsumoNombre}" itemValue="#{tipo}"/>
+                            </p:selectOneMenu>
+                            <p:message for="tipoinsumoeditar"/>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h6><b>Unidad de medida*</b></h6>
+                            <p:selectOneMenu id="unidadinsumoeditar" value="#{insumosBean.insumoEditar.unidadmedidaId}" required="true"
+                                             requiredMessage="Tipo es requerido." converter="#{unidadMedidaConvertidor}" style="width: 100%">
+                                <f:selectItems value="#{insumosBean.todosUnidadesMedidasDisponibles()}" var="unidad"
+                                               itemLabel="#{unidad.unidadmedidaNombre}" itemValue="#{unidad}"/>
+                            </p:selectOneMenu>
+                            <p:message for="unidadinsumoeditar"/>
+                        </div>    
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                    </div><br/>
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                        <div class="col-lg-10 col-md-10 col-sm-10 col-xs-12">
+                            <h6><b>Descripción</b></h6>
+                            <p:inputTextarea id="descripcionpromocioneditar" value="#{insumosBean.insumoEditar.insumoDescripcion}" maxlength="250" style="width: 100%" rows="3"
+                                             validatorMessage="Descripción no válida."/>
+                            <p:message for="descripcionpromocioneditar"/>
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                    </div>
+                    <br/>
+                    
+                    <div class="row">
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                            <h6><b>Alertar cuando llegue a un mínimo de*</b></h6>
+                            <p:inputNumber id="minimoinsumoeditar" value="#{insumosBean.insumoEditar.insumoMinimo}" decimalPlaces="0" maxlength="6"
+                                           required="true" requiredMessage="Cantidad mínima es requerida." style="width: 50%"/>
+                            <p:message for="minimoinsumoeditar"/>
+                        </div>
+                        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                        </div>
+                        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-0">
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-12" align="center">
+                            <h:commandLink type="submit" class="btn btn-default botonNaranja" action="#{insumosBean.editarInsumo()}"
+                                           style="font-size: 11pt; width: 100pt; height: 30pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                                <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                            </h:commandLink>
+                            &nbsp;
+                            <button type="reset" class="btn btn-default buttonPopupLevel2" onclick="window.location.href = 'insumo_listado.xhtml'"
+                                    style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:grey; font-weight:bold; border:solid 1px grey; -webkit-appearance:none; border-radius: 5px">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                            </button>
+                            &nbsp;
+                            <button type="reset" class="btn btn-default buttonPopupLevel2"
+                                    style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:grey; font-weight:bold; border:solid 1px grey; -webkit-appearance:none; border-radius: 5px">
+                                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+                </h:form>    
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

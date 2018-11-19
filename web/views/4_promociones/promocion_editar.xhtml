@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>EDITAR PROMOCIÓN</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel id="panelpromocion" style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h:form id="editarpromocion" enctype="multipart/form-data">
+
+                    <p:focus for="nombrepromocioneditar"/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-7 col-md-7 col-xs-12">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <h7><b>Nombre*</b></h7>
+                                    <p:inputText id="nombrepromocioneditar" value="#{promocionesBean.promocionEditar.promocionNombre}" required="#{request.getParameter('promo')}" maxlength="50" style="width: 100%"
+                                                 validatorMessage="Nombre no válido." requiredMessage="Nombre es requerido.">
+                                        <f:validateRegex pattern="^([a-zA-Z0-9 ÑÁÉÍÓÚÜñáéíóúü.]{3,50})*$"/>
+                                    </p:inputText>
+                                    <p:message for="nombrepromocioneditar"/>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <h7><b>Descripción</b></h7>
+                                    <p:inputTextarea id="descripcionpromocioneditar" value="#{promocionesBean.promocionEditar.promocionDescripcion}" maxlength="250" style="width: 100%" rows="3"
+                                                     validatorMessage="Descripción no válida."/>
+                                    <p:message for="descripcionpromocioneditar"/>  
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <h7><b>Tipo de promoción*</b></h7>
+                                    <p:selectOneMenu id="tipopromocioneditar" value="#{promocionesBean.promocionEditar.promocionTipo}" required="#{request.getParameter('promo')}" style="width: 100%"
+                                                     requiredMessage="Tipo es requerido.">
+                                        <f:selectItem itemLabel="General" itemValue="1" />
+                                        <f:selectItem itemLabel="Cumpleaños" itemValue="2" />
+                                        <f:selectItem itemLabel="Especial" itemValue="3" />
+                                        <p:ajax listener="#{promocionesBean.inicializaFechasEditar()}" update="iniciopromocioneditar finpromocioneditar"/>
+                                    </p:selectOneMenu>
+                                    <p:message for="tipopromocioneditar"/>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <h7><b>Fecha de inicio*</b></h7>
+                                    <p:calendar id="iniciopromocioneditar" value="#{promocionesBean.promocionEditar.promocionInicio}" required="#{request.getParameter('promo')}" navigator="true" locale="es"
+                                                requiredMessage="Fecha es requerida." class="tamaniocalendario" pattern="dd-MM-yyyy" mask="true" styleClass="smiling-calendar">
+                                        <p:ajax event="dateSelect" update="finpromocioneditar"/>
+                                    </p:calendar>
+                                    <p:message for="iniciopromocioneditar"/>
+                                </div>
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                    <h7><b>Fecha de finalización*</b></h7>
+                                    <p:calendar id="finpromocioneditar" value="#{promocionesBean.promocionEditar.promocionFin}" required="#{request.getParameter('promo')}" navigator="true" styleClass="smiling-calendar" locale="es"
+                                                requiredMessage="Fecha es requerida." class="tamaniocalendario" pattern="dd-MM-yyyy" mask="true" mindate="#{promocionesBean.promocionEditar.promocionInicio}"/>
+                                    <p:message for="finpromocioneditar"/>
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <h7><b>Mensaje*</b></h7>
+                                    <p:inputTextarea id="mensajepromocioneditar" value="#{promocionesBean.promocionEditar.promocionMensaje}" required="#{request.getParameter('promo')}" maxlength="1000" style="width: 100%" rows="6"
+                                                     requiredMessage="Mensaje es requerido." validatorMessage="Mensaje no válido."/>
+                                    <p:message for="mensajepromocioneditar"/>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-5">
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <h7><b>Archivo (solamente se pueden subir imágenes en formato jpg)</b></h7>
+                                    <p:panel style="border: solid 1px #D5D5D5; width: 100%">
+                                        <p:fileUpload id="imagenpromocioneditar" value="#{promocionesBean.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" style="width: 100%"/>
+                                    </p:panel>
+                                    <p:message for="imagenpromocioneditar"/>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <h7><b>Imagen promocional</b></h7>
+                                    <img src="../../images/promociones/#{promocionesBean.promocionEditar.promocionImagenNombre}" alt="" width="100%" height="100%" style="margin-bottom: 1pt"/>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <br/>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-lg-12" align="right">
+                            <h:commandLink type="submit" class="btn btn-default  buttonLevel1" action="#{promocionesBean.existeArchivoEditar()}"
+                                           style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                                <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                                <f:param name="promo" value="true"/>
+                            </h:commandLink>
+                            &nbsp;
+                            <button type="reset" class="btn btn-default buttonPopupLevel2" onclick="window.location.href = 'promocion_editar_listado.xhtml'"
+                                    style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:Gray; font-weight:bold; border:solid 1px Gray; -webkit-appearance:none; border-radius: 5px">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+
+                </h:form>
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

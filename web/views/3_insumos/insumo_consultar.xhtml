@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+
+        <ui:composition template="./../../templates/layout/plantilla.xhtml">
+
+            <ui:define name="content">
+                <div class="banda1"><b>VER INSUMO</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <div class="row">
+                        <div class="col-md-1">
+                        </div>
+                        <div class="col-md-5">
+                            <h6><b>Nombre</b></h6>
+                            <p:inputText value="#{insumosBean.insumoConsultar.insumoNombre}" style="width: 100%" readonly="true"/>
+                        </div>
+                        <div class="col-md-5">
+                        </div>
+                        <div class="col-md-1">
+                        </div>
+                </div><br/>
+
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-5">
+                        <h6><b>Tipo de insumo</b></h6>
+                        <p:inputText value="#{insumosBean.insumoConsultar.tipoinsumoId.tipoinsumoNombre}" style="width: 100%" readonly="true"/>
+                    </div>
+                    <div class="col-md-5">
+                        <h6><b>Unidad de medida</b></h6>
+                        <p:inputText value="#{insumosBean.insumoConsultar.unidadmedidaId.unidadmedidaNombre}" style="width: 100%" readonly="true"/>
+                    </div>    
+                    <div class="col-md-1">
+                    </div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-10">
+                        <h6><b>Descripción</b></h6>
+                        <p:inputTextarea value="#{insumosBean.insumoConsultar.insumoDescripcion}" style="width: 100%"  rows="4" readonly="true"/>
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div><br/>
+                <div class="row">
+                    <div class="col-md-1">
+                    </div>
+                    <div class="col-md-5">
+                        <h6><b>Alertar cuando llegue a un mínimo de</b></h6>
+                        <p:inputNumber value="#{insumosBean.insumoConsultar.insumoMinimo}" style="width: 100%" validatorMessage="Debe digitar sólo numeros."/>
+                    </div>
+                    <div class="col-md-5">
+                    </div>
+                    <div class="col-md-1">
+                    </div>
+                </div>
+
+                <br/><br/>
+
+                <div class="row">
+                    <div class="col-md-12" align="center">
+                        <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                onclick="window.location.href = 'insumo_listado.xhtml'">
+                            <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Regresar
+                        </button>
+                    </div>
+                </div>
+                <br/>
+
+
+            </p:panel>
+            <p:spacer height="50"/>
+            </ui:define>
+
+        </ui:composition>
+
+
+</html>

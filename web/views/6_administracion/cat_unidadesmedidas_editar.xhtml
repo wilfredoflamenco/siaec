@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>EDITAR UNIDAD DE MEDIDA</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h:form id="editarunidadmedida">
+
+                    <p:focus for="nombreunidadeditar"/>
+                    
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+                            <h6><b>Nombre *</b></h6>
+                            <p:inputText id="nombreunidadeditar" value="#{catalogosBean.unidadMedidaEditar.unidadmedidaNombre}" required="true" maxlength="50" style="width: 100%"
+                                         validatorMessage="Nombre no válido." requiredMessage="Nombre es requerido.">
+                                <f:validateRegex pattern="^([a-zA-Z0-9 ÑÁÉÍÓÚÜñáéíóúü.]{3,50})*$"/>
+                            </p:inputText>
+                            <p:message for="nombreunidadeditar"/>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
+                        </div>
+                    </div>
+
+                    <br/>
+
+                    <div class="row">
+                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-10">
+                            <h6><b>Abreviación *</b></h6>
+                            <p:inputText id="abreviacionunidadeditar" value="#{catalogosBean.unidadMedidaEditar.unidadmedidaAbreviatura}" required="true" maxlength="10" style="width: 50%"
+                                         validatorMessage="Abreviación no válida." requiredMessage="Abreviación es requerida.">
+                                <f:validateRegex pattern="^([a-zA-Z0-9 ÑÁÉÍÓÚÜñáéíóúü.]{1,10})*$"/>
+                            </p:inputText>
+                            <p:message for="abreviacionunidadeditar"/>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-1">
+                        </div>
+                    </div>
+
+                    <br/><br/>
+
+                    <div class="row">
+                        <div class="col-lg-12" align="center">
+                            <h:commandLink type="submit" class="btn btn-default" style="width: 100pt; height: 27pt; color: white; padding:5px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="#{catalogosBean.editarUnidadMedida()}">
+                                <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                            </h:commandLink>
+                            &nbsp;
+                            <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                    onclick="window.location.href = 'cat_unidadesmedidas_listado.xhtml'">
+                                <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                            </button>
+                            &nbsp;
+                            <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt">
+                                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Restablecer
+                            </button>
+                        </div>
+                    </div>
+                    <br/>
+                </h:form>
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

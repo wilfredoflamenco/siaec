@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition>
+
+        <!-- Panel color blanco -->
+        <p:panel style="border: solid 1px #D5D5D5 ;border-top: 7px solid #066EAD; margin-left: 25px; margin-right: 25px">
+
+            <h:form>
+
+                <div class="row">
+                    <div class="col-md-2">
+                        <h6><b>Fecha</b></h6>
+                        <p:inputText id="fecha" value="#{expedientesBean.fechaSistema}" readonly="true" style="width: 100%">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-md-5">
+                        <h6><b>Atendido por</b></h6>
+                        <p:selectOneMenu id="mediconuevo" value="#{expedientesBean.consultaNueva.medicoId}" required="#{request.getParameter('consulta')}"
+                                         converter="#{medicoConvertidor}" requiredMessage="Médico es requerido." style="width: 100%">
+                            <f:selectItem itemLabel="Seleccionar..." itemValue="" />
+                            <f:selectItems value="#{expedientesBean.todosMedicosDisponibles()}" var="medico"
+                                           itemLabel="#{medico.medicoPrimerNombre} #{medico.medicoSegundoNombre} #{medico.medicoPrimerApellido} #{medico.medicoSegundoApellido}" itemValue="#{medico}"/>
+                        </p:selectOneMenu>
+                        <p:message for="mediconuevo"/>
+                    </div>
+                    <div class="col-md-5">
+                        <h6><b>Según promoción</b></h6>
+                        <p:selectOneMenu id="promocionnuevo" value="#{expedientesBean.consultaNueva.promocionId}" converter="#{promocionConvertidor}" style="width: 100%">
+                            <f:selectItem itemLabel="Seleccionar..." itemValue="" />
+                            <f:selectItems value="#{expedientesBean.todasPromocionesDisponibles()}" var="promo"
+                                           itemLabel="#{promo.promocionNombre}" itemValue="#{promo}" />
+                        </p:selectOneMenu>
+                    </div>
+                </div>
+
+                <br/><br/>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Motivo de la consulta</b></h6></div>
+                            <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                <p:inputTextarea id="motivonuevo" value="#{expedientesBean.consultaNueva.consultaMotivo}" required="#{request.getParameter('consulta')}" maxlength="200" rows="6"
+                                                 requiredMessage="Motivo de consulta requerido." validatorMessage="Motivo de consulta no válido." style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0"/>
+                                <p:message for="motivonuevo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Diagnostico</b></h6></div>
+                            <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                <p:inputTextarea id="diagnosticonuevo" value="#{expedientesBean.consultaNueva.consultaDiagnostico}" maxlength="1000" rows="6"
+                                                 validatorMessage="Diagnóstico no válido." style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0"/>
+                                <p:message for="diagnosticonuevo"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Notas</b></h6></div>
+                            <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                <p:inputTextarea id="notanuevo" value="#{expedientesBean.consultaNueva.consultaNota}" maxlength="1000" rows="6"
+                                                 validatorMessage="Nota no válida." style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0"/>
+                                <p:message for="notanuevo"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading" align="center" style="background: #f8f8f8; height: 30pt"><h6 style="margin-top: -1pt"><b>Receta</b></h6></div>
+                            <div class="panel-body" align="right" style="border: solid 1px #D5D5D5">
+                                <p:inputTextarea id="recetanuevo" value="#{expedientesBean.consultaNueva.consultaReceta}" maxlength="500" rows="6"
+                                                 validatorMessage="Receta no válida." style="width: 105%; margin-left: -11pt; margin-top: -11pt; margin-bottom: -15pt; border: 0"/>
+                                <p:message for="recetanuevo"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12" align="right">
+                        <h:commandLink type="submit" class="btn btn-default  buttonLevel1" action="#{expedientesBean.guardarConsulta()}"
+                                       style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                            <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                            <f:event type="preValidate" listener="#{expedientesBean.setTabIndex(2)}"/>
+                            <f:param name="consulta" value="true"/>
+                        </h:commandLink>
+                        &nbsp;
+                        <h:commandLink class="btn btn-default buttonPopupLevel2" action="paciente_expediente_gestionar.xhtml"
+                                       style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:Gray; font-weight:bold; border:solid 1px Gray; -webkit-appearance:none; border-radius: 5px">
+                            <i class="glyphicon glyphicon-remove-circle"></i> Cancelar
+                            <f:event type="preValidate" listener="#{expedientesBean.setTabIndex(2)}"/>
+                        </h:commandLink>
+                    </div>
+                </div>
+                <br/>
+
+            </h:form>
+        </p:panel>
+        <p:spacer height="50"/>
+    </ui:composition>
+</html>
+
+
+
+

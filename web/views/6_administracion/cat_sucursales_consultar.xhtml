@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>VER SUCURSAL</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <h5><b>Datos generales</b></h5>
+                <hr style="border: solid 1px #D5D5D5"/>
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Nombre de la sucursal</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaNombre}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Correo</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaCorreo}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Teléfono fijo</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaTelefonoFijo}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Teléfono movil</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaTelefonoMovil}" readonly="true" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Número de consultorios</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaModulo}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Hora apertura</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaHorarioApertura}" readonly="true" style="width: 100%">
+                            <f:convertDateTime pattern="HH:mm" timeZone="#{catalogosBean.horaLocal}"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Hora cierre</b></h6>
+                        <p:inputText value="#{catalogosBean.sucursalConsultar.clinicaHorarioCierre}" readonly="true" style="width: 100%">
+                            <f:convertDateTime pattern="HH:mm" timeZone="#{catalogosBean.horaLocal}"/>
+                        </p:inputText>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    </div>
+                </div>
+                <br/>
+
+                <br/>
+                <h5><b>Dirección</b></h5>
+                <hr style="border: solid 1px #D5D5D5"/>
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Colonia/Urbanización</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionColonia}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Calle/Avenida</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionCalle}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Pasaje/Senda</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionPasaje}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Polígono/Block</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionPoligono}" readonly="true" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Apartamento/Local</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionApartamento}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Casa número</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.direccionCasa}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Departamento</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.municipioId.departamentoId.departamentoNombre}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <h6><b>Municipio</b></h6>
+                        <p:inputText value="#{catalogosBean.direccionConsultar.municipioId.municipioNombre}" readonly="true" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/><br/>
+                
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-lg-12" align="right">
+                        <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                onclick="window.location.href = 'cat_sucursales_listado.xhtml'">
+                            <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Regresar
+                        </button>
+                    </div>
+                </div>
+                <br/>
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+    </ui:composition>
+</html>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="meta-data">
+            <f:metadata>
+                <f:viewAction action="#{configuracionBean.cargarConfiguracion()}"/>
+            </f:metadata>
+        </ui:define>
+        <ui:define name="content">
+            <div class="banda1"><b>Enviar Correo con: #{configuracionBean.correoVerificar(configuracionBean.configuracionEditar.configuracionCorreoCuenta)}</b></div>
+            <br/>
+            <p:tooltip />
+            <h:form class="container" id="frmAsignaTareas" enctype="multipart/form-data" >
+                <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+                    <p:focus for="destinatario"/>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h6><b><p:outputLabel for="destinatario" value="Para :" /></b></h6>
+                            <p:inputText  id="destinatario" value="#{configuracionBean.destinatario }" style="width: 100%" required="true"
+                                          validatorMessage="Correo no válido." requiredMessage="Correo requerido.">
+                                <f:validateRegex pattern="^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$"/>
+                            </p:inputText>
+                            <p:message for="destinatario" display="tooltip" />
+                        </div>
+
+                        <div class="col-md-12">
+                            <h6><b><p:outputLabel for="asunto" value="Asunto :" /></b></h6>
+                            <p:inputText  id="asunto" value="#{configuracionBean.asunto}" style="width: 100%" required="true" 
+                                          requiredMessage="Asunto requerido."/>
+                            <p:message for="asunto" display="tooltip" />
+                        </div>
+                        <div class="col-md-12">
+                            <br/>
+                        </div>
+
+                        <div class="col-md-12">
+                            <h6><b><p:outputLabel for="cuerpo" value="Contenido :" /> </b></h6>
+                            <p:inputTextarea  id="cuerpo" value="#{configuracionBean.cuerpo}" style="width: 100%" required="true" 
+                                              requiredMessage="Contenido requerido."/>
+                            <p:message for="cuerpo" display="tooltip" />
+
+                        </div>
+
+
+                    </div>
+                </p:panel>
+                <br/>
+                <div class="row">
+                    <h:commandButton type="submit" class="btn btn-dark btn-lg btn-block " value="Enviar" action="#{configuracionBean.enviarCorreoHtml()}" >
+                      
+                    </h:commandButton>
+                </div>
+                <br/><br/>
+            </h:form>
+        </ui:define>
+
+
+
+    </ui:composition>
+
+</html>

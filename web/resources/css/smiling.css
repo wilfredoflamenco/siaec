@@ -1,0 +1,266 @@
+body{
+    
+}
+
+
+a {
+    color:white;
+}
+
+/*Quitar opacidad de los elementos*/
+ .ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled{
+     opacity: 1.0;
+ }
+ 
+/*Clase para darle color de fondo al titulo de las viñetas*/
+.fondo {
+    background-color: #066EAD;
+}
+
+.navbar-smiling{
+    background-color: #066EAD;
+    border-color: #066EAD;
+}
+
+.negrita{
+    font-weight: bold;
+}
+
+
+.footer-separador{
+    border-top: 1px solid #066EAD;
+}
+
+.footer-text{
+    padding-top: 5px;
+    
+}
+
+.prueba > .ul > .li > .a{
+    color: red;
+}
+
+.ui-tabs .ui-tabs-nav li{
+    margin: 0px 1px 1px 1px;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default{
+    border: 0px;
+}
+
+.ui-tabs .ui-tabs-nav li{
+    border: 0px;
+    background: #A8CDEA;
+    border-radius: 10px 10px 0px 0px;
+    -moz-border-radius: 10px 10px 0px 0px;
+    -webkit-border-radius: 10px 10px 0px 0px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+
+
+
+/*Para expediente los diferentes tab en especial el seleccionado*/
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected{
+    background: #066EAD;
+    
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected > a {
+    color:white;
+    font-style: normal;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    text-shadow: none;
+}
+/*Elementos no seleccionados cambio de letra a negro. No estoy considerando otros 
+elementos hay que tomar en cuenta eso si se crean mas*/
+.ui-tabs .ui-tabs-nav li a, .ui-tabs.ui-tabs-collapsible .ui-tabs-nav li.ui-tabs-selected a{
+    color: black;
+}
+.ui-tabs{
+    border: none;
+}
+
+.ui-widget{
+    font-size: inherit;
+}
+
+.ui-tabs .ui-tabs-nav{
+    background: white;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected{
+    border: 0px;
+}
+
+.ui-tabs .ui-tabs-nav li.ui-tabs-selected:active{
+     
+    border: 0px;
+}
+
+/*Titulo panel expediente */
+.titulo-expediente{
+    padding-bottom: 10px;
+    padding-top: 10px;
+    padding-left: 10px;
+    margin-top: 0px;
+    color: white;
+}
+
+/*Elementos para peger el titulo a las fichas*/
+.ui-tabs .ui-tabs-panel {
+    padding-top: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+/*Botones de los expedientes */
+.ui-widget-content .btn-expediente{
+    
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    text-shadow: none;
+    color: white;
+    background: #FB6F52;
+}
+
+.ui-widget-content .btn-expediente-alternativa{
+    
+    padding-left: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    text-shadow: none;
+    color: white;
+    background: #FB6F52;
+}
+
+/*Para colocar franja azul a los paneles */
+.panel-expediente {
+    border-top: 3px solid #066EAD;
+}
+
+/*Filas espaciadas con margen*/
+.fila-expediente{
+    margin-top: 10px;
+}
+
+.fila-expediente > .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7,
+.col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12{
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+/*Registro de paciente*/
+/*Titulo en color gris 636975*/
+
+.titulo-registro-paciente{
+    background: #636975;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-left: 15px;
+    border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+}
+
+
+
+.titulo-registro-paciente> h3, h4 , h5 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+
+/*ui-tabs esta en el div principal
+ui-tabs-nav se encuentra en el ul
+li es el elemento por defento 
+si lo quiero un accesor para poner mi estilo tengo que en teoria reemplazar 
+ui-tabs por registro estructura base
+Estructura Base
+.ui-tabs .ui-tabs-nav li
+
+Color de los bordes cambia a un gris el color de fondo no se aplicara aun
+R V A 204
+HEXADECIMAL CCCCCC*/
+.registro > .ui-tabs-nav li {
+    border: 1px solid #CCCCCC;
+    background: white;
+    border-radius: 0px 0px 0px 0px;
+    -moz-border-radius: 0px 0px 0px 0px;
+    -webkit-border-radius: 0px 0px 0px 0px;
+}
+
+/*Tengo un pixel de mas que tiene a ponerme el blanco agregare un pixel para quiterselo
+a un bottom*/
+.registro > .ui-tabs-nav li.ui-tabs-selected{
+    padding-bottom: 16px;
+    
+}
+.registro .ui-tabs-panel {
+    border-top: 4px solid #066EAD;
+    border-left: 1px solid #CCCCCC;
+    border-right: 1px solid #CCCCCC;
+    border-bottom: 1px solid #CCCCCC;
+}
+
+/*Margen para serpara todo el contenido se ve muy pegado
+en datos generales de paciente*/
+
+.datos-generales{
+    margin-top: 30px;
+}
+
+/*La propiedad que entra de primeface es:
+.ui-widget-content .ui-state-default
+Con esta propiedad modifico todos los componentes que la llevan
+Estudiandolo un poco mas podemos modificar todas y no hacer tantas clases extras */
+ .tabla-expediente .ui-state-default{
+    
+    background: #066EAD;
+    color: white;
+    text-shadow:none;
+}
+
+.ui-icon-search{
+    color: white;
+}
+
+.fa { 
+        color: orange;
+}
+
+/*Para los mensajes emergentes*/
+#growl {
+                right: 20px;
+top: 50%;
+            }
+            
+.ui-growl{
+    top:55px;
+ }
+ 
+ /*Para el panelgrid*/
+ .ui-widget-content{
+     border: none;
+ }
+ 
+ .next-smiling{
+     background-image: url(tnext.png) !important;
+ }
+ 
+ .ui-icon-smiling{
+    width: 25px;
+    height: 25px;
+    top: 40%;
+ }
+ 
+ .form-control{
+     background-color: white;
+ }

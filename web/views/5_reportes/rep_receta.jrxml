@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c72ee2ac-a914-4c76-8b5a-adb8516c0be4">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="consultaId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT consulta_receta, (p.paciente_primer_nombre  || ' ' || p.paciente_segundo_nombre  || ' ' || p.paciente_primer_apellido  || ' ' || p.paciente_segundo_apellido) AS Paciente, 
+(m.medico_primer_nombre  || ' ' || m.medico_segundo_nombre || ' ' || m.medico_primer_apellido  || ' ' || m.medico_segundo_apellido) AS Medico
+FROM consultas c, pacientes p, medicos m
+WHERE c.paciente_id=p.paciente_id
+AND c.medico_id=m.medico_id
+AND c.consulta_id=$P{consultaId}]]>
+	</queryString>
+	<field name="consulta_receta" class="java.lang.String"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="medico" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="169" y="36" width="258" height="20" forecolor="#464646" uuid="f317b75d-2e74-4530-82b8-0200e62a6de5"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[RECETA MÉDICA]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="518" y="31" width="52" height="20" forecolor="#464646" uuid="d13be28d-64c2-4ccf-a630-21f38ba42afe"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="7" width="139" height="60" uuid="cd9ed1ae-15a0-4cd3-8ac9-a5a615d8c20a"/>
+				<imageExpression><![CDATA["logo_smiling.png"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="485" y="31" width="40" height="20" forecolor="#464646" uuid="de10a30a-f408-4081-ac12-ae92b22fa84a"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="11" width="237" height="24" forecolor="#464646" uuid="45674f47-9eb5-4ce7-bdee-71ef419ed2d3"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLÍNICA DENTAL SMILING]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="40" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="570" height="1" forecolor="#808080" uuid="31defe2f-099d-46d2-8e66-34552c93377c"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="15" y="11" width="27" height="14" uuid="9d154f92-8de9-411c-ad9e-c8e73258a24f"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PX:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="47" y="11" width="236" height="15" uuid="43201f1a-a842-48da-b3f1-3476b21a395e"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="99" y="4" width="376" height="49" uuid="859f5997-687a-4d61-b943-2cd3c7c93110"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{consulta_receta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="9" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="24" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="191" y="14" width="203" height="17" uuid="824b157a-c452-46aa-bb66-916e6eefb700"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{medico}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="231" y="34" width="121" height="20" uuid="5f350254-6788-4fa5-b330-37a6c9f54275"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Médico Odontólogo]]></text>
+			</staticText>
+			<line>
+				<reportElement x="191" y="11" width="203" height="1" uuid="1248a023-5540-4581-b57b-72631dd8c810"/>
+			</line>
+			<staticText>
+				<reportElement x="179" y="1" width="15" height="14" uuid="2836fb61-f1f2-4506-9208-f1cd96fe2f26"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[F.]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="50" splitType="Stretch"/>
+	</summary>
+</jasperReport>

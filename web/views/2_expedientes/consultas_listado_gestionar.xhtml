@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <h:form>
+            <p:panel id="patologiaconsultar" style="border: solid 1px #D5D5D5 ;border-top: 7px solid #066EAD; margin-left: 25px; margin-right: 25px">
+
+                <div class="row" style="margin-right: 10pt; margin-left: 5pt; margin-bottom: 10pt; margin-top: 10pt">
+                    <div class="col-md-12">
+                        <h:commandLink type="submit" class="btn btn-default buttonLevel1" style="font-size: 11pt; width: 120pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="consultas_plantilla_nuevo.xhtml">
+                            <i class="glyphicon glyphicon-plus"></i> Nueva consulta
+                            <f:actionListener binding="#{expedientesBean.setTabIndex(2)}"/>
+                        </h:commandLink>
+                    </div>
+                </div>
+                <br/>
+                <!-- Tabla -->
+                <div class="row" style="margin-right: 10pt; margin-left: 10pt">
+                    <div class="col-md-12">
+                        <table id="tabla" class="table table-striped table-bordered table-hover table-condensed table-boostrap-expediente">
+                            <!-- Cabecera de la tabla -->
+                            <thead>
+                                <tr>
+                                    <th width="5%" style="text-align: center">No</th>
+                                    <th width="10%" style="text-align: center">Fecha</th>
+                                    <th width="40%" style="text-align: center">Motivo de Consulta</th>
+                                    <th width="40%" style="text-align: center">Diagnostico</th>
+                                    <th width="5%" style="text-align: center">Editar</th>
+
+                                </tr>
+                            </thead>
+                            <!-- Cuerpo de la tabla -->
+                            <tbody>
+                                <ui:repeat value="#{expedientesBean.todasConsultasPorPacienteGestionar()}" var="consulta" >
+                                    <tr>
+                                        <td align="center"></td>
+                                        <td align="center"><h:outputText value="#{consulta.consultaFechaCreacion}">
+                                                <f:convertDateTime pattern="dd-MM-yyyy"/>
+                                            </h:outputText></td>
+                                        <td>#{consulta.consultaMotivo}</td>
+                                        <td>#{consulta.consultaDiagnostico}</td>
+                                        <td align="center">
+                                            <h:commandLink action="consultas_plantilla_gestionar.xhtml" class="btn btn-default glyphicon glyphicon-pencil btn-sm btn-tabla-expediente2" title="Editar">
+                                                <f:setPropertyActionListener value="#{consulta}" target="#{expedientesBean.consultaEditar}"/>
+                                                <f:actionListener binding="#{expedientesBean.setTabIndex(2)}"/>
+                                            </h:commandLink>
+                                        </td>
+                                    </tr>
+                                </ui:repeat>
+                            </tbody> 
+                        </table>
+                    </div>
+                </div>
+
+            </p:panel>
+        </h:form>
+        <p:spacer height="50"/>
+    </ui:composition>
+</html>
+

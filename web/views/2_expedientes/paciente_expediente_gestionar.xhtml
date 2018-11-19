@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+            <p:tabView id="pacientegestionar" styleClass="prueba expediente-tabs" activeIndex="#{expedientesBean.tabIndex}">
+                    <p:tab title="Ficha de Datos">
+                        <div class="fondo">
+                            <h5  class="titulo-expediente">Expediente: <p:outputLabel value="#{expedientesBean.pacienteEditar.pacienteId}"><f:convertNumber minIntegerDigits="5" pattern="#####"/></p:outputLabel> - 
+                                <p:outputLabel value="#{expedientesBean.pacienteEditar.pacientePrimerNombre} #{expedientesBean.pacienteEditar.pacienteSegundoNombre} #{expedientesBean.pacienteEditar.pacientePrimerApellido} #{expedientesBean.pacienteEditar.pacienteSegundoApellido}"/></h5>
+                        </div>
+                        
+                        <ui:include src="fichadatos_gestionar.xhtml"/>
+                        
+                    </p:tab>
+                    <p:tab title="Antecedentes">
+                        <div class="fondo">
+                            <h5  class="titulo-expediente">Expediente: <p:outputLabel value="#{expedientesBean.pacienteEditar.pacienteId}"><f:convertNumber minIntegerDigits="5" pattern="#####"/></p:outputLabel> - 
+                                <p:outputLabel value="#{expedientesBean.pacienteEditar.pacientePrimerNombre} #{expedientesBean.pacienteEditar.pacienteSegundoNombre} #{expedientesBean.pacienteEditar.pacientePrimerApellido} #{expedientesBean.pacienteEditar.pacienteSegundoApellido}"/></h5>
+                        </div>
+                        
+                        <ui:include src="antecedentes_gestionar.xhtml"/>
+                        
+                    </p:tab>
+                    <p:tab title="Consultas">
+                        <div class="fondo">
+                            <h5  class="titulo-expediente">Expediente: <p:outputLabel value="#{expedientesBean.pacienteEditar.pacienteId}"><f:convertNumber minIntegerDigits="5" pattern="#####"/></p:outputLabel> - 
+                                <p:outputLabel value="#{expedientesBean.pacienteEditar.pacientePrimerNombre} #{expedientesBean.pacienteEditar.pacienteSegundoNombre} #{expedientesBean.pacienteEditar.pacientePrimerApellido} #{expedientesBean.pacienteEditar.pacienteSegundoApellido}"/></h5>
+                        </div>
+                        
+                        <ui:include src="consultas_listado_gestionar.xhtml"/>
+                        
+                    </p:tab>
+                    <p:tab title="Odontograma">
+                        <div class="fondo">
+                            <h5  class="titulo-expediente">Expediente: <p:outputLabel value="#{expedientesBean.pacienteEditar.pacienteId}"><f:convertNumber minIntegerDigits="5" pattern="#####"/></p:outputLabel> - 
+                                <p:outputLabel value="#{expedientesBean.pacienteEditar.pacientePrimerNombre} #{expedientesBean.pacienteEditar.pacienteSegundoNombre} #{expedientesBean.pacienteEditar.pacientePrimerApellido} #{expedientesBean.pacienteEditar.pacienteSegundoApellido}"/></h5>
+                        </div>
+                        
+                        <ui:include src="odontograma_gestionar.xhtml"/>
+                        
+                    </p:tab>
+                    <p:tab title="Imagenes">
+                        <div class="fondo">
+                            <h5  class="titulo-expediente">Expediente: <p:outputLabel value="#{expedientesBean.pacienteEditar.pacienteId}"><f:convertNumber minIntegerDigits="5" pattern="#####"/></p:outputLabel> - 
+                                <p:outputLabel value="#{expedientesBean.pacienteEditar.pacientePrimerNombre} #{expedientesBean.pacienteEditar.pacienteSegundoNombre} #{expedientesBean.pacienteEditar.pacientePrimerApellido} #{expedientesBean.pacienteEditar.pacienteSegundoApellido}"/></h5>
+                        </div>
+                        
+                        <ui:include src="imagenes_gestionar.xhtml"/>
+                        
+                    </p:tab>
+                    
+                </p:tabView>
+        </ui:define>
+        
+        <!-- Script para funcionalidades de la tabla -->
+        <ui:define name="scripts">
+
+            <script>
+                $(document).ready(function () {
+                    var t = $('#tabla').DataTable({
+                        "columnDefs": [{
+                                "searchable": false,
+                                "orderable": false,
+                                "targets": 0
+                            }],
+                        "searching": false,
+                        "paginate": false,
+                        "bInfo": false,
+                        "order": [[1, 'asc']]
+                    });
+                    
+                    $('#tabla').dataTable(
+                            {
+                                "retrieve": true,
+                                "bDestroy": true,
+                                "searching": false,
+                                "oLanguage": {
+                                    "sProcessing": "Procesando...",
+                                    "sLengthMenu": "Mostrar _MENU_ registros",
+                                    "sZeroRecords": "No se encontraron resultados",
+                                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "sInfoPostFix": "",
+                                    "sSearch": "Buscar:",
+                                    "sUrl": "",
+                                    "sInfoThousands": ",",
+                                    "sLoadingRecords": "Cargando...",
+                                    "oPaginate": {
+                                        "sFirst": "Primero",
+                                        "sLast": "Último",
+                                        "sNext": "Siguiente",
+                                        "sPrevious": "Anterior"
+                                    },
+                                    "oAria": {
+                                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                    }
+                                }
+                            }
+                    );
+
+                    t.on('order.dt search.dt', function () {
+                        t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                            cell.innerHTML = i + 1;
+                        });
+                    }).draw();
+                });
+
+                $(document).ready(function () {
+                    estiloTabla();
+                });
+
+                function estiloTabla() {
+                    table.destroy();//para que no de problema de inicialización de tabla.
+                    $('#tabla').dataTable(
+                            {
+                                "retrieve": true,
+                                "bDestroy": true,
+                                "searching": false,
+                                "oLanguage": {
+                                    "sProcessing": "Procesando...",
+                                    "sLengthMenu": "Mostrar _MENU_ registros",
+                                    "sZeroRecords": "No se encontraron resultados",
+                                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "sInfoPostFix": "",
+                                    "sSearch": "Buscar:",
+                                    "sUrl": "",
+                                    "sInfoThousands": ",",
+                                    "sLoadingRecords": "Cargando...",
+                                    "oPaginate": {
+                                        "sFirst": "Primero",
+                                        "sLast": "Último",
+                                        "sNext": "Siguiente",
+                                        "sPrevious": "Anterior"
+                                    },
+                                    "oAria": {
+                                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                    }
+                                }
+                            }
+                    );
+                }
+            </script>
+        </ui:define>
+        
+    </ui:composition>
+</html>
+

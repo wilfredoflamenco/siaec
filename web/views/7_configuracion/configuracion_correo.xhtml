@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="meta-data">
+            <f:metadata>
+                <f:viewAction action="#{configuracionBean.cargarConfiguracion()}"/>
+            </f:metadata>
+        </ui:define>
+        <ui:define name="content">
+
+
+            <div class="banda1"><b>Configuracion Correo</b></div>
+            <br/>
+            <!-- Panel color blanco -->
+            <p:tooltip />
+            <h:form id="form" >
+                <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-md-6">
+                            <h6><b>Direccion SMTP</b></h6>
+                            <p:inputText id="direccion" value="#{configuracionBean.configuracionEditar.configuracionCorreoHost }" maxlength="75" style="width: 100%"/>
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6><b>Puerto SMTP</b></h6>
+                            <p:inputNumber id="puerto" value="#{configuracionBean.configuracionEditar.configuracionCorreoPort}" 
+                                           decimalPlaces="0" minValue="0" maxValue="65536" emptyValue="zero"  styleClass="smiling-numero-100" validatorMessage="Verifique">
+                            </p:inputNumber>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-md-6">
+                            <h6><b>Correo</b></h6>
+                            <p:inputText id="usuario" value="#{configuracionBean.configuracionEditar.configuracionCorreoCuenta}" maxlength="128" style="width: 100%" 
+                                         validatorMessage="Correo no válido." placeholder="ejemplo@mail.com">
+                                <f:validateRegex pattern="^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$"/>
+                            </p:inputText>
+                            <p:message for="usuario" display="tooltip" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6><b>Constraseña</b></h6>
+                            <p:inputText id="constrasenya" value="#{configuracionBean.configuracionEditar.configuracionCorreoContrasenya}" maxlength="256" style="width: 100%"/>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-md-12">
+                            <h6><b>Protocolo de Encryptamiento</b></h6>
+                            <p:selectOneMenu id="encryptamiento" value="#{configuracionBean.configuracionEditar.configuracionCorreoEncryptacion}" required="true" style="width: 100%"  >
+                                <f:selectItem itemLabel="Sin encryptación" itemValue="sin"  />
+                                <f:selectItem itemLabel="TLS" itemValue="tls" />
+                                <f:selectItem itemLabel="SSL" itemValue="ssl" />
+                            </p:selectOneMenu>
+
+                        </div>
+                    </div>
+                    <br/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-md-6">
+                            <h6>Autorizacion requerida de cuenta y credenciales</h6>
+                            <p:selectBooleanCheckbox value="#{configuracionBean.configuracionEditar.configuracionCorreoRequerido}" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <h6>Activar envio de correo</h6>
+                            <p:selectBooleanCheckbox value="#{configuracionBean.configuracionEditar.configuracionCorreoActivo}" />
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-md-12">
+                            <p:accordionPanel activeIndex="true"  styleClass="acordion-smiling-white">
+                                <p:tab title="Opciones avanzadas" >
+                                    <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                                        <div class="col-md-12" style="padding-left: 0px; padding-right: 0px;">
+                                            <h6 >Envio de correo ilimitado</h6>
+                                            <p:selectBooleanCheckbox value="#{configuracionBean.configuracionEditar.configuracionCorreoIlimitada}" styleClass="hola"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                                        <div class="col-md-5" style="padding-left: 0px; padding-right: 0px;">
+                                            <h6 >Limite de correo al mes </h6>
+                                            <p:inputNumber id="limiteMes" value="#{configuracionBean.configuracionEditar.configuracionCorreoMes}" 
+                                                           decimalPlaces="0" minValue="0" maxValue="2147483647" emptyValue="zero" styleClass="smiling-numero-100"/>
+                                        </div>
+                                        <div class="col-md-2" ></div>
+                                        <div class="col-md-5" style="padding-left: 0px; padding-right: 0px;">
+                                            <h6 >Limite de correo al día </h6>
+                                            <p:inputNumber id="limiteDia" value="#{configuracionBean.configuracionEditar.configuracionCorreoDia}" 
+                                                           decimalPlaces="0" minValue="0" maxValue="2147483647" emptyValue="zero" styleClass="smiling-numero-100"/>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="margin-left: 0px; margin-right: 0px;">
+                                        <div class="col-md-5" style="padding-left: 0px; padding-right: 0px;">
+                                            <h6 >Uso de correo al mes </h6>
+                                            <p:inputNumber id="enviadoMes" value="#{configuracionBean.configuracionEditar.configuracionCorreoEnviadoMes}" disabled="true" 
+                                                           decimalPlaces="0" styleClass="smiling-numero-100"/>
+                                            <p style="font-size: smaller; font-style: italic;">Se restuara cada primero de mes.</p>
+                                        </div>
+                                        <div class="col-md-2" ></div>
+                                        <div class="col-md-5" style="padding-left: 0px; padding-right: 0px;">
+                                            <h6 >Uso de correo al día </h6>
+                                            <p:inputNumber id="enviadoDia" value="#{configuracionBean.configuracionEditar.configuracionCorreoEnviadoDia}" disabled="true"
+                                                           decimalPlaces="0" styleClass="smiling-numero-100"/>
+                                            <p style="font-size: smaller; font-style: italic;">Se restuara cada dia a la 0:00 hrs.</p>
+                                        </div>
+                                    </div>
+                                </p:tab>
+                            </p:accordionPanel> 
+                        </div>
+                    </div>
+                    <br/>
+                    <br/>
+                    <div class="row" style="margin-left: 5px; margin-right: 5px">
+                        <div class="col-md-12">
+                            <center>
+                                <p:commandButton type="sumbit" value="Guardar"  styleClass="btn-expediente-alternativa" icon="icono-smiling glyphicon glyphicon-floppy-disk" update="form">
+                                    <f:actionListener binding="#{configuracionBean.guardarConfiguracion()}" />
+                                </p:commandButton>
+                                <p:commandButton type="sumbit" value="Prueba"  styleClass="btn-expediente-cancelar" icon="icono-smiling glyphicon glyphicon-ok">
+                                    <f:actionListener binding="#{configuracionBean.testConexion()}" />
+                                </p:commandButton>
+                            </center>
+                        </div>
+                    </div>
+
+
+
+
+                </p:panel>
+            </h:form>
+            <br/>
+            <br/>
+
+        </ui:define>
+
+
+
+    </ui:composition>
+
+</html>

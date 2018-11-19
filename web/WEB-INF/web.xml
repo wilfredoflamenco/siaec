@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <context-param>
+        <param-name>javax.faces.PROJECT_STAGE</param-name>
+        <param-value>Development</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>Faces Servlet</servlet-name>
+        <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+        
+<!-- *********************************************************************** --> 
+    <!-- Upload -->
+    
+    <context-param>
+        <param-name>primefaces.UPLOADER</param-name>
+        <param-value>commons</param-value>
+    </context-param>
+        
+    <context-param>
+        <description>Para ubicación de imágenes de promociones</description>
+        <param-name>directory_path_patients</param-name>
+        <!-- <param-value>/home/olvarey/imagenesPaciente/</param-value> -->
+        <param-value>c://Users/Fam. Gomez Aldana/Documents/NetBeansProjects/siaec/web/images/pacientes/</param-value>
+    </context-param>
+    
+    <context-param>
+        <description>Para ubicación de imágenes de promociones</description>
+        <param-name>directory_path_promotions</param-name>
+        <!-- <param-value>/home/olvarey/imagenesPaciente/</param-value> -->
+        <param-value>c://Users/Fam. Gomez Aldana/Documents/NetBeansProjects/siaec/web/images/promociones</param-value>
+    </context-param>
+    
+    <filter>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrimeFaces FileUpload Filter</filter-name>
+        <servlet-name>Faces Servlet</servlet-name>
+    </filter-mapping>
+    
+<!-- *********************************************************************** --> 
+    <!-- JasperReports Servlet -->
+    <servlet>
+        <servlet-name>PdfServlet</servlet-name>
+        <servlet-class>net.sf.jasperreports.j2ee.servlets.PdfServlet</servlet-class>
+    </servlet>
+    
+    <!-- JasperReports Servlet Mapping -->
+    <servlet-mapping>
+        <servlet-name>PdfServlet</servlet-name>
+        <url-pattern>/servlets/report/PDF</url-pattern>
+    </servlet-mapping>
+        
+<!-- *********************************************************************** --> 
+    <servlet-mapping>
+        <servlet-name>Faces Servlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+    <welcome-file-list>
+        <welcome-file>index.xhtml</welcome-file>
+    </welcome-file-list>
+    
+  
+<!-- *********************************************************************** --> 
+    <!-- Captcha -->
+    
+    <context-param>
+        <param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
+        <param-value>6Ld_bncUAAAAAED4kN5csE13AgERMVu6ZnJvhVVW</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
+        <param-value>6Ld_bncUAAAAAMF1bBpdH_SJias3wcTnmcYGY8nV</param-value>
+    </context-param>
+    
+</web-app>

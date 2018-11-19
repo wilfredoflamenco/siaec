@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <div class="banda1"><b>REGISTRO DE PACIENTE</b></div>
+            <br/>
+
+            <h:form id="registro" >
+
+                <p:tabView styleClass="registro" activeIndex="#{expedientesBean.tabindex}" style="margin-left: 10px; margin-right: 10px; border: solid 1px #D5D5D5">
+                    <p:tab title="Datos generales" disabled="true">
+                        <p:focus for="primernombreregistro"/>
+                        <br/>
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Primer nombre *</b></h6>
+                                <p:inputText id="primernombreregistro" value="#{expedientesBean.pacienteNuevo.pacientePrimerNombre}" required="#{request.getParameter('datos')}" maxlength="25"
+                                             style="width: 100%" validatorMessage="Primer nombre no válido." requiredMessage="Primer nombre es requerido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="primernombreregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Segundo nombre</b></h6>
+                                <p:inputText id="segundonombreregistro" value="#{expedientesBean.pacienteNuevo.pacienteSegundoNombre}" maxlength="25"
+                                             style="width: 100%" validatorMessage="Segundo nombre no válido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="segundonombreregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Primer apellido *</b></h6>
+                                <p:inputText id="primerapellidoregistro" value="#{expedientesBean.pacienteNuevo.pacientePrimerApellido}" required="#{request.getParameter('datos')}" maxlength="25"
+                                             style="width: 100%" validatorMessage="Primer apellido no válido." requiredMessage="Primer apellido es requerido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="primerapellidoregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Segundo apellido</b></h6>
+                                <p:inputText id="segundoapellidoregistro" value="#{expedientesBean.pacienteNuevo.pacienteSegundoApellido}" maxlength="25"
+                                             style="width: 100%" validatorMessage="Segundo apellido no válido.">
+                                    <f:validateRegex pattern="^([a-zA-Z ÑÁÉÍÓÚÜñáéíóúü.]{3,25})*$"/>
+                                </p:inputText>
+                                <p:message for="segundoapellidoregistro"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Fecha de nacimiento</b></h6>
+                                <p:calendar id="fechanacimientoregistro" value="#{expedientesBean.pacienteNuevo.pacienteFechaNacimiento}" class="tamaniocalendario"
+                                            showOn="false" pattern="dd-MM-yyyy" mask="true" validatorMessage="Fecha no válida."/>
+                                <p:message for="fechanacimientoregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Sexo *</b></h6>
+                                <p:selectOneMenu id="sexoregistro" value="#{expedientesBean.pacienteNuevo.pacienteSexo}" required="true" style="width: 100%"
+                                                 requiredMessage="Sexo es requerido.">
+                                    <f:selectItem itemLabel="Seleccionar..." itemValue="" />
+                                    <f:selectItem itemLabel="Masculino" itemValue="true" />
+                                    <f:selectItem itemLabel="Femenino" itemValue="false" />
+                                </p:selectOneMenu>
+                                <p:message for="sexoregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Correo electrónico</b></h6>
+                                <p:inputText id="correoregistro" value="#{expedientesBean.pacienteNuevo.pacienteCorreo}" maxlength="50" style="width: 100%"
+                                             validatorMessage="Correo no válido." placeholder="ejemplo@mail.com">
+                                    <f:validateRegex pattern="^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4})*$"/>
+                                </p:inputText>
+                                <p:message for="correoregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Trabajo</b></h6>
+                                <p:inputText id="trabajoregistro" value="#{expedientesBean.pacienteNuevo.pacienteTrabajo}" maxlength="50" style="width: 100%"/>
+                            </div>
+                        </div>
+                        <br/>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono casa</b></h6>
+                                <p:inputMask id="telefonocasaregistro" value="#{expedientesBean.pacienteNuevo.pacienteTelefonoCasa}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono oficina</b></h6>
+                                <p:inputMask id="telefonooficinaregistro" value="#{expedientesBean.pacienteNuevo.pacienteTelefonoOficina}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Teléfono movil</b></h6>
+                                <p:inputMask id="telefonofijoregistro" value="#{expedientesBean.pacienteNuevo.pacienteTelefonoMovil}" mask="9999-9999" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <br/><br/>
+                                <p:selectBooleanCheckbox id="whatsappregistro" value="#{expedientesBean.pacienteNuevo.pacienteWhatsapp}"/> Posee Whatsapp
+                            </div>
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="font-size: smaller; font-style: italic;">
+                                <br/>
+                                <p:selectBooleanCheckbox id="correoMandar" value="#{expedientesBean.pacienteNuevo.pacienteNotificarCorreo}"/> Autoriza el envío de correos electrónicos. 
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+
+                            <div class="col-lg-12" align="right">
+                                <h:commandLink type="submit" class="btn btn-default  buttonLevel1" action="#{expedientesBean.setTabindex(1)}"
+                                               style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                                    <i class="glyphicon glyphicon-share-alt"></i> Siguiente
+                                    <f:param name="datos" value="true"/>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                        <br/>
+
+                    </p:tab>
+
+                    <p:tab title="Dirección" disabled="true">
+                        <p:focus for="coloniaregistro"/>
+                        <br/>
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Colonia/Urbanización *</b></h6>
+                                <p:inputText id="coloniaregistro" value="#{expedientesBean.direccionNuevo.direccionColonia}" required="#{request.getParameter('direccion')}" maxlength="50"
+                                             style="width: 100%" requiredMessage="Colonia es requerida."/>
+                                <p:message for="coloniaregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Calle/Avenida</b></h6>
+                                <p:inputText id="calleregistro" value="#{expedientesBean.direccionNuevo.direccionCalle}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Pasaje/Senda</b></h6>
+                                <p:inputText id="pasajeregistro" value="#{expedientesBean.direccionNuevo.direccionPasaje}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Polígono/Block</b></h6>
+                                <p:inputText id="poligonoregistro" value="#{expedientesBean.direccionNuevo.direccionPoligono}" maxlength="50" style="width: 100%"/>
+                            </div>
+                        </div>
+                        <br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Apartamento/Local</b></h6>
+                                <p:inputText id="apartamentoregistro" value="#{expedientesBean.direccionNuevo.direccionApartamento}" maxlength="50" style="width: 100%"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Casa  *</b></h6>
+                                <p:inputText id="casaregistro" value="#{expedientesBean.direccionNuevo.direccionCasa}" required="#{request.getParameter('direccion')}" maxlength="10"
+                                             style="width: 100%" requiredMessage="Número de casa es requerido."/>
+                                <p:message for="casaregistro"/>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Departamento</b></h6>
+                                <p:selectOneMenu value="#{expedientesBean.departamentoId}" style="width: 100%">
+                                    <f:selectItem itemLabel="Seleccionar..." itemValue="0"/>
+                                    <f:selectItems value="#{expedientesBean.todosDepartamentos()}" var="departamento" 
+                                                   itemLabel="#{departamento.departamentoNombre}" itemValue="#{departamento.departamentoId}" />
+                                    <p:ajax update="municipioregistro"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                                <h6><b>Municipio *</b></h6>
+                                <p:selectOneMenu id="municipioregistro" value="#{expedientesBean.direccionNuevo.municipioId}" required="#{request.getParameter('direccion')}"
+                                                 converter="#{municipioConvertidor}" style="width: 100%" requiredMessage="Municipio es requerido.">
+                                    <f:selectItem itemLabel="Seleccionar..." itemValue=""/>
+                                    <f:selectItems value="#{expedientesBean.todosMunicipiosPorDepartamento()}" var="municipio"
+                                                   itemLabel="#{municipio.municipioNombre}" itemValue="#{municipio}" />
+                                </p:selectOneMenu>
+                                <p:message for="municipioregistro"/>
+                            </div>
+                        </div>
+                        <br/><br/>
+
+                        <div class="row" style="margin-left: 5px; margin-right: 5px">
+                            <div class="col-lg-12" align="right">
+                                <h:commandLink class="btn btn-default buttonPopupLevel2" action="paciente_registrar.xhtml"
+                                               style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:Gray; font-weight:bold; border:solid 1px Gray; -webkit-appearance:none; border-radius: 5px">
+                                    <i class="glyphicon glyphicon-share-alt"></i> Regresar
+                                    <f:actionListener binding="#{expedientesBean.setTabindex(0)}"/>
+                                </h:commandLink>
+                                &nbsp;
+                                <h:commandLink type="submit" class="btn btn-default  buttonLevel1" actionListener="#{expedientesBean.setTabindex(0)}" action="#{expedientesBean.guardarPaciente()}"
+                                               style="font-size: 11pt; width: 100pt; color: white; padding:9px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px">
+                                    <i class="glyphicon glyphicon-floppy-disk"></i> Guardar
+                                    <f:param name="direccion" value="true"/>
+                                </h:commandLink>
+                            </div>
+                        </div>
+                        <br/>
+                    </p:tab>
+                </p:tabView>
+            </h:form>
+            <p:spacer height="50"/>
+        </ui:define>
+
+    </ui:composition>
+
+</html>

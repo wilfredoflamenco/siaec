@@ -1,0 +1,176 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"        
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+
+            <ui:define name="meta-data">
+                <f:metadata>
+                    <f:viewAction action="#{usuarioBean.verificaAcceso()}" />
+                </f:metadata>
+            </ui:define>
+
+            <!-- Barra de título -->
+            <div class="banda1"><b>LISTADO DE PATOLOGIAS</b></div>
+            <br/>
+
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <!-- Botón para agregar un nuevo registro -->
+                <div class="row" style="margin-right: 10pt; margin-left: 10pt; margin-bottom: 10pt; margin-top: 10pt">
+                    <div class="col-lg-12">
+                        <button class="btn btn-default buttonLevel1 w3-round" style="width: 120pt"
+                                onclick="window.location.href = 'cat_patologias_nuevo.xhtml'">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Nuevo patología
+                        </button>
+                    </div>
+                </div>
+                <br/>
+
+                <h:form id="listaPatologias">
+                    <!-- Tabla -->
+                    <div class="row" style="margin-right: 10pt; margin-left: 10pt">
+                        <div class="col-lg-12">
+                            <table id="tabla" class="table table-striped table-bordered table-hover table-condensed table-boostrap-expediente">
+                                <!-- Cabecera de la tabla -->
+                                <thead>
+                                    <tr>
+                                        <th width="5%">No</th>
+                                        <th width="85%">Nombre</th>
+                                        <th width="10%">Opciones</th>
+                                    </tr>
+                                </thead>
+                                <!-- Cuerpo de la tabla -->
+                                <tbody>
+                                    <ui:repeat value="#{catalogosBean.todosPatologiasDisponibles()}" var="pato" >
+                                        <tr>
+                                            <td align="center"></td>
+                                            <td>#{pato.patologiaNombre}</td>
+                                            <td align="center">
+                                                <h:commandLink action="cat_patologias_editar.xhtml" class="btn btn-default glyphicon glyphicon-pencil btn-sm btn-tabla-expediente2" title="Editar">
+                                                    <f:setPropertyActionListener value="#{pato}" target="#{catalogosBean.patologiaEditar}"/>
+                                                </h:commandLink> &nbsp;
+                                                <h:commandLink class="btn btn-default glyphicon glyphicon-trash btn-sm btn-tabla-expediente2" title="Eliminar"
+                                                               pt:data-toggle="modal" pt:data-target="#eliminarPatologia">
+                                                    <f:setPropertyActionListener value="#{pato}" target="#{catalogosBean.patologiaEditar}"/>
+                                                    <p:ajax process="@this" update=":listaPatologias:eliminar"/>
+                                                </h:commandLink>
+                                            </td>
+                                        </tr>
+                                    </ui:repeat>
+                                </tbody> 
+                            </table>
+                        </div>
+
+                        <!-- Modal eliminarPatologia -->
+                        <div id="eliminarPatologia" class="modal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <!-- Cabecera del modal -->
+                                    <div class="modal-header" style="background-color: #066EAD">
+                                        <button type="button" class="close btn btn-default" data-dismiss="modal" style="width: 20pt; height: 25pt; background-color: #FF7F27; color: white" aria-hidden="true"><b>X</b></button>
+                                        <h5 class="modal-title"><b><font color="#fff">Eliminar patologia</font></b></h5>
+                                    </div>
+
+                                    <!-- Cuerpo del modal -->
+                                    <div class="modal-body">
+                                        <p:panel style="margin-right: 5pt; margin-left: 5pt; border-radius: 5px; height: 140pt">
+                                            <h:panelGroup id="eliminar" style="text-align: center">
+                                                <!-- Nombre -->
+                                                <div class="col-xs-12"><br/>
+                                                    <label><center>¿Está seguro de realizar esta acción?</center></label><br/>
+                                                    <label>La patología se borrará definitivamente.</label><br/>
+                                                </div>
+                                                <div class="col-xs-12"><br/>
+
+                                                    <h:commandLink type="submit" class="btn btn-default" style="width: 100pt; height: 27pt; color: white; padding:5px; background-color:#FB6F52; font-weight:bold; border:solid 1px #FB6F52; -webkit-appearance:none; border-radius: 5px" action="#{catalogosBean.eliminarPatologia()}">
+                                                        <i class="glyphicon glyphicon-trash"></i> Eliminar
+                                                    </h:commandLink>
+                                                    &nbsp;
+                                                    <button type="button" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt; height: 27pt; color: white" data-dismiss="modal" aria-hidden="true">
+                                                        <span class="glyphicon glyphicon-remove-circle" aria-hidden="true"></span> Cancelar
+                                                    </button>
+                                                </div>
+                                            </h:panelGroup> 
+                                        </p:panel>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </h:form>
+                <br/>
+
+            </p:panel>
+            <p:spacer height="50"/>
+        </ui:define>
+
+        <!-- Script para funcionalidades de la tabla -->
+        <ui:define name="scripts">
+
+            <script>
+                $(document).ready(function () {
+                    var t = $('#tabla').DataTable({
+                        "columnDefs": [{
+                                "searchable": false,
+                                "orderable": false,
+                                "targets": 0
+                            }],
+                        "order": [[1, 'asc']]
+                    });
+
+                    t.on('order.dt search.dt', function () {
+                        t.column(0, {search: 'applied', order: 'applied'}).nodes().each(function (cell, i) {
+                            cell.innerHTML = i + 1;
+                        });
+                    }).draw();
+                });
+
+                $(document).ready(function () {
+                    estiloTabla();
+                });
+
+                function estiloTabla() {
+                    $('#tabla').dataTable(
+                            {
+                                "bDestroy": true,
+                                "oLanguage": {
+                                    "sProcessing": "Procesando...",
+                                    "sLengthMenu": "Mostrar _MENU_ registros",
+                                    "sZeroRecords": "No se encontraron resultados",
+                                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                                    "sInfoPostFix": "",
+                                    "sSearch": "Buscar:",
+                                    "sUrl": "",
+                                    "sInfoThousands": ",",
+                                    "sLoadingRecords": "Cargando...",
+                                    "oPaginate": {
+                                        "sFirst": "Primero",
+                                        "sLast": "Último",
+                                        "sNext": "Siguiente",
+                                        "sPrevious": "Anterior"
+                                    },
+                                    "oAria": {
+                                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                                    }
+                                }
+                            }
+                    );
+                }
+            </script>
+        </ui:define>
+    </ui:composition>
+</html>

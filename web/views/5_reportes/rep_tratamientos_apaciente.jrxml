@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="612" pageHeight="792" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fa5f22f6-6281-44b6-ba14-96b84f43e90c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="pacienteId" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT t.tratamiento_nombre, d.detalleconsulta_fecha_creacion, 
+(p.paciente_primer_nombre  || ' ' || p.paciente_segundo_nombre  || ' ' ||  
+p.paciente_primer_apellido  || ' ' || p.paciente_segundo_apellido) AS Paciente, d.detalleconsulta_cargo 
+FROM detalles_consultas d, consultas c, pacientes p, tratamientos t
+WHERE c.paciente_id=p.paciente_id
+AND d.paciente_id=p.paciente_id
+AND d.tratamiento_id=t.tratamiento_id
+AND p.paciente_id=$P{pacienteId}
+ORDER BY Paciente ASC;]]>
+	</queryString>
+	<field name="tratamiento_nombre" class="java.lang.String"/>
+	<field name="detalleconsulta_fecha_creacion" class="java.sql.Date"/>
+	<field name="paciente" class="java.lang.String"/>
+	<field name="detalleconsulta_cargo" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="70" splitType="Stretch">
+			<staticText>
+				<reportElement x="148" y="35" width="307" height="20" forecolor="#464646" uuid="b78648d5-d440-48c1-8d1a-437e84ae2d0c"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE TRATAMIENTOS REALIZADOS A PACIENTE]]></text>
+			</staticText>
+			<textField evaluationTime="Report">
+				<reportElement x="567" y="47" width="14" height="20" forecolor="#464646" uuid="624e8aa4-857e-4335-a04a-21a2896ab0ba"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="523" y="31" width="52" height="20" forecolor="#464646" uuid="9561810b-ef4f-4f35-a95d-1e3abca0a021"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="490" y="31" width="40" height="20" forecolor="#464646" uuid="69f108fe-d9a6-4ee2-ad0e-856b8b9117e2"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="487" y="47" width="80" height="20" forecolor="#464646" uuid="2e720ecb-e680-4f56-8bf0-e83c5f35f50a"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="181" y="11" width="237" height="24" forecolor="#464646" uuid="0270f934-ec99-4b6d-b2ed-fe5c5dcc1707"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CLÍNICA DENTAL SMILING]]></text>
+			</staticText>
+			<image>
+				<reportElement x="7" y="6" width="139" height="60" uuid="1c0d7cf0-685e-4a11-909b-613e78cf2580"/>
+				<imageExpression><![CDATA["logo_smiling.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="572" height="1" forecolor="#808080" uuid="d324054c-0a64-4f0d-9cab-adcb4007d41b"/>
+				<graphicElement>
+					<pen lineWidth="2.0"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="29" y="5" width="64" height="14" uuid="d9a308c4-78cc-4ff8-9c9a-dfb222b52294"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[PACIENTE:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="23" width="572" height="1" forecolor="#808080" uuid="b5777d7e-fd83-4bdb-8a88-0e02ee5746bd"/>
+			</line>
+			<textField>
+				<reportElement x="93" y="5" width="215" height="14" uuid="e50b5c9a-ffc5-41ed-b374-48f9d664ee95"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{paciente}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="24" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="21" width="572" height="1" forecolor="#808080" uuid="110a7f7c-8f40-46ca-85bf-dd8987ca54e8"/>
+			</line>
+			<staticText>
+				<reportElement x="29" y="5" width="21" height="13" uuid="8c89798e-b847-4005-b28f-037bd331163e"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="81" y="5" width="142" height="13" uuid="18c55b7b-1751-41fb-9861-18eaccf8f7fd"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[FECHA DE TRATAMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="5" width="100" height="13" uuid="e1973325-0658-4477-aa3e-74f530915e90"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TRATAMIENTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="411" y="4" width="143" height="14" uuid="d85babe3-18a6-4d44-b5c8-8c66978fe092"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COSTO DE TRATAMIENTO]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="29" y="3" width="40" height="20" uuid="5bcc80ca-a36b-4524-b9f5-816efa24330f"/>
+				<textElement>
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="81" y="3" width="100" height="16" uuid="63577900-4c26-4581-be19-197d4ca63dd6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleconsulta_fecha_creacion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="237" y="5" width="174" height="13" uuid="fe11ffdf-52c2-4450-9ec4-fc0ae8d5adaf"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{tratamiento_nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="4" width="100" height="15" uuid="dffb840e-b2b3-4017-a3f9-e7b7541dd3ae"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{detalleconsulta_cargo}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="9" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="24" splitType="Stretch">
+			<staticText>
+				<reportElement x="149" y="4" width="303" height="20" forecolor="#464646" uuid="c4b6d380-0bbe-4821-861f-503bacd6ac3c"/>
+				<textElement>
+					<font fontName="Arial" size="11" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[© SIAEC "LA FELICIDAD SE REFLEJA EN TU SONRISA"]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="9" splitType="Stretch"/>
+	</summary>
+</jasperReport>

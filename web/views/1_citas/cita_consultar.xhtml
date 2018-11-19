@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="./../../templates/layout/plantilla.xhtml">
+        <ui:define name="content">
+            <div class="banda1"><b>CONSULTAR CITA</b></div>
+            <br/>
+            <!-- Panel color blanco -->
+            <p:panel style="margin-right: 20pt; margin-left: 20pt; border-radius: 20px; border: solid 1px #D5D5D5">
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-md-4">
+                        <h6><b>Nombres</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.citaNombres}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-md-4">
+                        <h6><b>Apellidos</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.citaApellidos}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-md-4">
+                        <h6><b>Fechas</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.citaFecha}" style="width: 100%">
+                            <f:convertDateTime pattern="dd-MM-yyyy"/>
+                        </p:inputText>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-md-4">
+                        <h6><b>Telefono</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.citaTelefono}" readonly="true" style="width: 100%"/>
+                    </div>                    
+                    <div class="col-md-4">
+                        <h6><b>Correo electronico</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.citaCorreo}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-md-4">
+                        <h6><b>Hora</b></h6>
+                        <p:inputText value="#{citasBean1.horacita(citasBean1.citaConsultar.citaHora)}" readonly="false" style="width: 100%"/>
+
+
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-md-4">
+                        <h6><b>Sucursal</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.clinicaId.clinicaNombre}" readonly="true" style="width: 100%"/>
+                    </div>                    
+                    <div class="col-md-4">
+                        <h6><b>Medico</b></h6>
+                        <p:inputText value="#{citasBean1.abreviatura(citasBean1.citaConsultar.medicoId.medicoSexo)} #{citasBean1.citaConsultar.medicoId.medicoPrimerNombre} #{citasBean1.citaConsultar.medicoId.medicoSegundoNombre} #{citasBean1.citaConsultar.medicoId.medicoPrimerApellido}" readonly="true" style="width: 100%"/>
+                    </div>
+                    <div class="col-md-4">
+                        <h6><b>Estado</b></h6>
+                        <p:inputText value="#{citasBean1.estadoCita(citasBean1.citaConsultar.citaEstado)}" readonly="true" style="width: 100%"/>
+                    </div>
+                </div>
+                <br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-md-8">
+                        <h6><b>Motivo de cita</b></h6>
+                        <p:inputText value="#{citasBean1.citaConsultar.citaMotivo}" readonly="true" style="width: 100%"/>
+                    </div>                    
+                    <div class="col-md-4"></div>
+                </div>
+                <br/><br/>
+
+                <div class="row" style="margin-left: 5px; margin-right: 5px">
+                    <div class="col-md-12" align="center">
+                        <button type="reset" class="btn btn-default buttonPopupLevel2 w3-round" style="width: 100pt"
+                                onclick="window.location.href = 'cita_listado_consultar_proximas.xhtml'">
+                            <span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span> Regresar
+                        </button>
+                    </div>
+                </div>
+            </p:panel>
+        </ui:define>
+    </ui:composition>
+</html>
